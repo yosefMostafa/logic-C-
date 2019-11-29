@@ -221,10 +221,10 @@ void UI::DrawAND2(const GraphicsInfo &r_GfxInfo, bool selected) const
 {
 	string GateImage;
 	if (selected) {//use image in the highlighted case
-		GateImage = "Images\\Gates\\Gate_AND2_Hi.jpg";
+		GateImage = "Images\\Gates\\Gate_AND2.jpg";
 	}
 	else {
-		GateImage = "Images\\Gates\\Gate_AND2.jpg";
+		GateImage = "Images\\Gates\\Gate_AND2_Hi.jpg";
 	}
 
 	//Draw AND2 Gate at Gfx_Info (1st corner)
@@ -235,9 +235,9 @@ void UI::DrawOR2(const GraphicsInfo& r_GfxInfo, bool selected) const
 {
 	string GateImage;
 	if (selected)	//use image in the highlighted case
-		GateImage = "Images\\Gates\\gate_OR.jpg";
+		GateImage = "Images\\Gates\\OR.jpg";
 	else
-		GateImage = "Images\\Gates\\gate_OR.jpg";
+		GateImage = "Images\\Gates\\OR_Hi.jpg";
 
 	//Draw AND2 Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info

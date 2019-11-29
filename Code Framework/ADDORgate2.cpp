@@ -1,5 +1,5 @@
-#include "D:\zewail\Y2 Fall\C++\CIE202 - Project Fall 2019 - student\Code Framework\Actions\ADDORgate2.h"
-#include "D:\zewail\Y2 Fall\C++\CIE202 - Project Fall 2019 - student\Code Framework\ApplicationManager.h"
+#include "ADDORgate2.h"
+#include "ApplicationManager.h"
 #include "OR2.h"
 
 AddORgate2::AddORgate2(ApplicationManager* pApp) :Action(pApp)

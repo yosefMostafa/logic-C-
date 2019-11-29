@@ -8,7 +8,7 @@
   represent the 2-input AND gate
 */
 
-#include "D:\zewail\Y2 Fall\C++\CIE202 - Project Fall 2019 - student\Code Framework\Components\Gate.h"
+#include "D:\zewail\Y2 Fall\C++\CIE202 - Project Fall 2019 - student\logic-C-\Code Framework\Components\Gate.h"
 
 class OR2 :public Gate
 {

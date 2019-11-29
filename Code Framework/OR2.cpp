@@ -1,4 +1,3 @@
-#include "D:\zewail\Y2 Fall\C++\CIE202 - Project Fall 2019 - student\Code Framework\Components\OR2.h"
 #include "OR2.h"
 
 

@@ -1,7 +1,10 @@
+#include "D:\zewail\Y2 Fall\C++\CIE202 - Project Fall 2019 - student\Code Framework\Components\OR2.h"
 #include "OR2.h"
 
-OR2::OR2(GraphicsInfo* r_pGfxInfo, int r_FanOut) :Gate(r_pGfxInfo, 2, r_FanOut)
+
+OR2::OR2(GraphicsInfo* r_pGfxInfo, int r_FanOut,bool tf) :Gate(r_pGfxInfo, 2, r_FanOut)
 {
+	trandfa = tf;
 }
 
 
@@ -17,8 +20,13 @@ void OR2::Operate()
 // Draws 2-input AND gate
 void OR2::Draw(UI* pUI)
 {
-	//Call output class and pass gate drawing info to it.
-	pUI->DrawAND2(*m_pGfxInfo);
+	if (trandfa) {
+		//Call output class and pass gate drawing info to it.
+		pUI->DrawOR2(*m_pGfxInfo, true);
+	}
+	else {
+		pUI->DrawOR2(*m_pGfxInfo, false);
+	}
 }
 
 //returns status of outputpin
