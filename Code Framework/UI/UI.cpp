@@ -180,7 +180,7 @@ void UI::ClearDrawingArea() const
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 //Draws the menu (toolbar) in the Design mode
-void UI::CreateDesignToolBar() 
+void UI::CreateDesignToolBar()
 {
 	AppMode = DESIGN;	//Design Mode
 
@@ -204,14 +204,26 @@ void UI::CreateDesignToolBar()
 	//TODO: Prepare image for each menu item and add it to the list
 
 	//Draw menu item one image at a time
-	for(int i=0; i<ITM_DSN_CNT; i++)
-		pWind->DrawImage(MenuItemImages[i],i*ToolItemWidth,0,ToolItemWidth, ToolBarHeight);
+	for (int i = 0; i < ITM_DSN_CNT; i++)
+		pWind->DrawImage(MenuItemImages[i], i * ToolItemWidth, 0, ToolItemWidth, ToolBarHeight);
 	pWind->DrawString(10, 80, "And");
 
 	//Draw a line under the toolbar
+	pWind->SetPen(BLACK, 20);
+	string gatelabel[8]= { "AND","NAND","OR","NOR","XOR","XNOR","PEN","EXIT" };
+	for (int i = 0; i < 8; i++) {
+		pWind->DrawString(i * ToolItemWidth + 30, 85, gatelabel[i]);
+	}
 	pWind->SetPen(RED,3);
-	pWind->DrawLine(0, ToolBarHeight, width, ToolBarHeight);	
-
+	pWind->DrawLine(0, ToolBarHeight + 15, width, ToolBarHeight + 15);
+	pWind->SetPen(YELLOW, 1);
+	for (int i = 0; i < width; i = i + 10) {
+		pWind->DrawLine(i,100 , i, height-50);
+	}
+	for (int i = 0; i < height-150; i = i + 10) {
+		pWind->DrawLine(0,i+100, width,i+100);
+	}
+	
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 //Draws the menu (toolbar) in the simulation mode
@@ -274,6 +286,7 @@ void UI::DrawOR2(const GraphicsInfo& r_GfxInfo, bool selected) const
 
 void UI::DrawConnection(const GraphicsInfo& r_GfxInfo, bool selected) 
 {
+	pWind->SetPen(BLACK, 5);
 	pWind->DrawLine(r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[0].y);
 	pWind->DrawLine(r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[0].y, r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[1].y);//TODO: Add code to draw connection
 }
