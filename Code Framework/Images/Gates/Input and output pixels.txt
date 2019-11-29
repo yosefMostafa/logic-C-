@@ -1,0 +1,12 @@
+[ start pixel .. thickness : 5px ]
+Input one from bottom 
+IN (x coordinate , y coordinate )
+======================================
+OR - NOR ==> 1- IN (0,18) 2- IN (0,53) 3- OUT (131,36)
+.
+NAND ==> 1- IN (0,17) 2- IN (0,51) 3- OUT (131,36) 
+.
+AND ==> 1- IN (0,18) 2- IN (0,53) 3- OUT (131,36) 
+.
+XOR - XNOR ==> 1- IN (0,18) 2- IN (0,53) 3- OUT (131,36)
+.
