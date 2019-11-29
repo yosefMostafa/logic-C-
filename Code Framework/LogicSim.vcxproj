@@ -65,6 +65,7 @@
     <ClInclude Include="Actions\Action.h" />
     <ClInclude Include="Actions\AddANDgate2.h" />
     <ClInclude Include="Actions\addconc.h" />
+    <ClInclude Include="Actions\AddNANDgate.h" />
     <ClInclude Include="Actions\selectd.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -94,6 +95,7 @@
     <ClInclude Include="Components\Connection.h" />
     <ClInclude Include="Components\Gate.h" />
     <ClInclude Include="Components\InputPin.h" />
+    <ClInclude Include="Components\NAND.h" />
     <ClInclude Include="Components\OutputPin.h" />
     <ClInclude Include="Components\Pin.h" />
     <ClInclude Include="Defs.H" />
@@ -104,6 +106,7 @@
   <ItemGroup>
     <ClCompile Include="Actions\AddANDgate2.cpp" />
     <ClCompile Include="Actions\addconc.cpp" />
+    <ClCompile Include="Actions\AddNANDgate.cpp" />
     <ClCompile Include="Actions\selectd.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp">
@@ -149,6 +152,7 @@
     <ClCompile Include="Components\Connection.cpp" />
     <ClCompile Include="Components\Gate.cpp" />
     <ClCompile Include="Components\InputPin.cpp" />
+    <ClCompile Include="Components\NAND.cpp" />
     <ClCompile Include="Components\OutputPin.cpp" />
     <ClCompile Include="Components\Pin.cpp" />
     <ClCompile Include="main.cpp" />

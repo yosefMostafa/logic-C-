@@ -99,6 +99,10 @@ ActionType UI::GetUserAction()
 			switch (ClickedItemOrder)
 			{
 			case ITM_AND2: return ADD_AND_GATE_2;
+			case ITM_NAND2: return ADD_NAND_GATE_2;
+			case ITM_XOR: return ADD_XOR_GATE_2;
+			case ITM_XNOR: return ADD_XNOR_GATE_2;
+			case ITM_NOR2: return ADD_NOR_GATE_2;
 			case ITM_OR2: return ADD_OR_GATE_2;
 			case ITM_pen:return ADD_CONNECTION;	
 			case ITM_EXIT: return EXIT;	
@@ -185,9 +189,16 @@ void UI::CreateDesignToolBar()
 	//First prepare List of images for each menu item
 	string MenuItemImages[ITM_DSN_CNT];
 	MenuItemImages[ITM_AND2] = "images\\Menu\\Menu_AND2.jpg";
-	MenuItemImages[ITM_OR2] = "images\\Menu\\Menu_OR2.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
 	MenuItemImages[ITM_pen] = "images\\Menu\\pen.jpg";
+	MenuItemImages[ITM_OR2] = "images\\Gates\\OR.jpg";
+	MenuItemImages[ITM_XOR] = "images\\Gates\\XOR.jpg";
+	MenuItemImages[ITM_NOR2] = "images\\Gates\\NOR.jpg";
+	MenuItemImages[ITM_NAND2] = "images\\Gates\\NAND.jpg";
+	MenuItemImages[ITM_XNOR] = "images\\Gates\\XNOR.jpg";
+
+
+
 
 
 	//TODO: Prepare image for each menu item and add it to the list
@@ -225,6 +236,20 @@ void UI::DrawAND2(const GraphicsInfo &r_GfxInfo, bool selected) const
 	}
 	else {
 		GateImage = "Images\\Gates\\Gate_AND2_Hi.jpg";
+	}
+
+	//Draw AND2 Gate at Gfx_Info (1st corner)
+	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
+	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
+}
+void UI::DrawNAND2(const GraphicsInfo& r_GfxInfo, bool selected) const
+{
+	string GateImage;
+	if (selected) {//use image in the highlighted case
+		GateImage = "Images\\Gates\\NAND.jpg";
+	}
+	else {
+		GateImage = "Images\\Gates\\NAND_Hi.jpg";
 	}
 
 	//Draw AND2 Gate at Gfx_Info (1st corner)

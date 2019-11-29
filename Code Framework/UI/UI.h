@@ -39,7 +39,11 @@ class UI
 		//Note: Items are ordered here as they appear in menu
 		//If you want to change the menu items order, change the order here
 		ITM_AND2,		//AND gate item in menu
+		ITM_NAND2,
 		ITM_OR2,		//OR gate item in menu
+		ITM_NOR2,
+		ITM_XOR,
+		ITM_XNOR,
 		ITM_pen,	//pen item in menu 
 		ITM_EXIT,		//Exit item
 		//TODO: Add more items names here
@@ -111,6 +115,7 @@ public:
 		
 	// Draws 2-input AND gate
 	void DrawAND2(const GraphicsInfo &r_GfxInfo, bool selected = false) const;
+	void DrawNAND2(const GraphicsInfo& r_GfxInfo, bool selected) const;
 	void DrawOR2(const GraphicsInfo& r_GfxInfo, bool selected) const;
 
 	///TODO: Make similar functions for drawing all other gates, switch, and LED, .. etc

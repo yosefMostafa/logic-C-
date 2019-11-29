@@ -2,8 +2,8 @@
 #ifndef _ADD_OR_GATE_H
 #define _ADD_OR_GATE_H
 
-#include "D:\zewail\Y2 Fall\C++\CIE202 - Project Fall 2019 - student\Code Framework\Actions\action.h"
-#include "D:\zewail\Y2 Fall\C++\CIE202 - Project Fall 2019 - student\Code Framework\Components\AND2.h"
+#include "D:\zewail\Y2 Fall\C++\CIE202 - Project Fall 2019 - student\logic-C-\Code Framework\Actions\action.h"
+#include "D:\zewail\Y2 Fall\C++\CIE202 - Project Fall 2019 - student\logic-C-\Code Framework\Components\AND2.h"
 
 class AddORgate2 : public Action
 {
