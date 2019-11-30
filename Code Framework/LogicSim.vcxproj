@@ -66,7 +66,9 @@
     <ClInclude Include="Actions\AddANDgate2.h" />
     <ClInclude Include="Actions\addconc.h" />
     <ClInclude Include="Actions\AddNANDgate.h" />
+    <ClInclude Include="Actions\empty.h" />
     <ClInclude Include="Actions\selectd.h" />
+    <ClInclude Include="Actions\delete.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -107,6 +109,7 @@
     <ClCompile Include="Actions\AddANDgate2.cpp" />
     <ClCompile Include="Actions\addconc.cpp" />
     <ClCompile Include="Actions\AddNANDgate.cpp" />
+    <ClCompile Include="Actions\delete.cpp" />
     <ClCompile Include="Actions\selectd.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp">

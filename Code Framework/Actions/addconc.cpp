@@ -1,6 +1,6 @@
-#include "D:\zewail\Y2 Fall\C++\CIE202 - Project Fall 2019 - student\Code Framework\ApplicationManager.h"
+#include "D:\zewail\Y2 Fall\C++\CIE202 - Project Fall 2019 - student\logic-C-\Code Framework\ApplicationManager.h"
 #include "addconc.h"
-#include "D:\zewail\Y2 Fall\C++\CIE202 - Project Fall 2019 - student\Code Framework\Components\Connection.h"
+#include "D:\zewail\Y2 Fall\C++\CIE202 - Project Fall 2019 - student\logic-C-\Code Framework\Components\Connection.h"
 void addconc::Execute() {
 	//Get a Pointer to the user Interfaces
 	UI* pUI = pManager->GetUI();

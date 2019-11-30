@@ -44,8 +44,14 @@ class UI
 		ITM_NOR2,
 		ITM_XOR,
 		ITM_XNOR,
-		ITM_pen,	//pen item in menu 
+		ITM_pen,
+		ITM_DELETE,//pen item in menu
+		ITM_UNDO,
+		ITM_REDO,
+		ITM_SAVE,
+		ITM_LOAD,
 		ITM_EXIT,		//Exit item
+		
 		//TODO: Add more items names here
 	
 		ITM_DSN_CNT		//no. of design menu items ==> This should be the last line in this enum
@@ -69,7 +75,7 @@ class UI
 
 	MODE AppMode;		//Application Mode (design or simulation)
 	
-	static const int	width = 1080, height = 680,	//Window width and height
+	static const int	width = 1280, height = 720,	//Window width and height
 						wx = 15 , wy = 15,			//Window starting coordinates
 						StatusBarHeight = 50,	//Status Bar Height
 						ToolBarHeight = 80,		//Tool Bar Height (distance from top of window to bottom line of toolbar)

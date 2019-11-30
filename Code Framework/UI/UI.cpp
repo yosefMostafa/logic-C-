@@ -104,6 +104,7 @@ ActionType UI::GetUserAction()
 			case ITM_XNOR: return ADD_XNOR_GATE_2;
 			case ITM_NOR2: return ADD_NOR_GATE_2;
 			case ITM_OR2: return ADD_OR_GATE_2;
+			case ITM_DELETE: return DEL;
 			case ITM_pen:return ADD_CONNECTION;	
 			case ITM_EXIT: return EXIT;	
 			
@@ -191,11 +192,17 @@ void UI::CreateDesignToolBar()
 	MenuItemImages[ITM_AND2] = "images\\Menu\\Menu_AND2.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
 	MenuItemImages[ITM_pen] = "images\\Menu\\pen.jpg";
-	MenuItemImages[ITM_OR2] = "images\\Gates\\OR.jpg";
+	MenuItemImages[ITM_OR2] = "images\\Menu\\OR.jpg";
 	MenuItemImages[ITM_XOR] = "images\\Gates\\XOR.jpg";
 	MenuItemImages[ITM_NOR2] = "images\\Gates\\NOR.jpg";
 	MenuItemImages[ITM_NAND2] = "images\\Gates\\NAND.jpg";
 	MenuItemImages[ITM_XNOR] = "images\\Gates\\XNOR.jpg";
+	MenuItemImages[ITM_DELETE] = "images\\Menu\\delete.jpg";
+	MenuItemImages[ITM_UNDO] = "images\\Menu\\Undo.jpg";
+	MenuItemImages[ITM_REDO] = "images\\Menu\\Redo.jpg";
+	MenuItemImages[ITM_SAVE] = "images\\Menu\\Save.jpg";
+	MenuItemImages[ITM_LOAD] = "images\\Menu\\Load.jpg";
+
 
 
 
@@ -204,23 +211,23 @@ void UI::CreateDesignToolBar()
 	//TODO: Prepare image for each menu item and add it to the list
 
 	//Draw menu item one image at a time
-	for (int i = 0; i < ITM_DSN_CNT; i++)
+	for (int i = 0; i < ITM_DSN_CNT; i++) {
 		pWind->DrawImage(MenuItemImages[i], i * ToolItemWidth, 0, ToolItemWidth, ToolBarHeight);
-	pWind->DrawString(10, 80, "And");
+	}
 
 	//Draw a line under the toolbar
 	pWind->SetPen(BLACK, 20);
-	string gatelabel[8]= { "AND","NAND","OR","NOR","XOR","XNOR","PEN","EXIT" };
-	for (int i = 0; i < 8; i++) {
+	string gatelabel[13]= { "AND","NAND","OR","NOR","XOR","XNOR","PEN","Delete","Undo","Redo","Save","Load","EXIT" };
+	for (int i = 0; i < 13; i++) {
 		pWind->DrawString(i * ToolItemWidth + 30, 85, gatelabel[i]);
 	}
 	pWind->SetPen(RED,3);
 	pWind->DrawLine(0, ToolBarHeight + 15, width, ToolBarHeight + 15);
-	pWind->SetPen(YELLOW, 1);
-	for (int i = 0; i < width; i = i + 10) {
+	pWind->SetPen(BLACK, 1);
+	for (int i = 0; i < width; i = i + 15) {
 		pWind->DrawLine(i,100 , i, height-50);
 	}
-	for (int i = 0; i < height-150; i = i + 10) {
+	for (int i = 0; i < height-150; i = i + 15) {
 		pWind->DrawLine(0,i+100, width,i+100);
 	}
 	

@@ -130,6 +130,12 @@
     <ClInclude Include="Components\NAND.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="Actions\delete.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\empty.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\AND2.cpp">
@@ -286,6 +292,9 @@
     </ClCompile>
     <ClCompile Include="Components\NAND.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\delete.cpp">
+      <Filter>Actions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

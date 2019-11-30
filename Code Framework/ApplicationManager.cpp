@@ -2,6 +2,7 @@
 #include "Actions\AddANDgate2.h"
 #include "Actions\AddNANDgate.h"
 #include "Actions\Addconc.h"
+#include "Actions\delete.h"
 #include "Actions\selectd.h"
 #include "Actions\AddORgate2.h"
 #include "Actions\Action.h"
@@ -50,6 +51,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case ADD_NAND_GATE_2:
 			pAct = new AddNANDgate2(this);
+			break;
+		case DEL:
+			pAct = new delete1(this);
 			break;
 		case SELECT:
 			pAct = new selectd(this);
