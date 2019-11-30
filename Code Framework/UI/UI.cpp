@@ -143,7 +143,7 @@ void UI::ChangeTitle(string Title) const
 void UI::CreateStatusBar() const
 {
 	pWind->SetPen(RED,3);
-	pWind->DrawLine(0, height-StatusBarHeight, width, height-StatusBarHeight);
+	pWind->DrawLine(0, height-StatusBarHeight, width-100, height-StatusBarHeight);
 }
 //////////////////////////////////////////////////////////////////////////////////
 void UI::PrintMsg(string msg) const
@@ -222,24 +222,25 @@ void UI::CreateDesignToolBar()
 		pWind->DrawString(i * ToolItemWidth + 30, 85, gatelabel[i]);
 	}
 	pWind->SetPen(RED,3);
-	pWind->DrawLine(0, ToolBarHeight + 15, width, ToolBarHeight + 15);
+	pWind->DrawLine(0, ToolBarHeight + 15, width-100, ToolBarHeight + 15);
 	pWind->SetPen(BLACK, 1);
-	for (int i = 0; i < width; i = i + 15) {
-		pWind->DrawLine(i,100 , i, height-50);
+	for (int i = 0; i < width-100; i = i + 15) {
+		pWind->DrawLine(i,95 , i, height-50);
 	}
 	for (int i = 0; i < height-150; i = i + 15) {
-		pWind->DrawLine(0,i+100, width,i+100);
+		pWind->DrawLine(0,i+95, width-100,i+95);
 	}
-	
+	pWind->SetPen(RED, 3);
+	pWind->DrawLine(width - 100, 95, width - 100, height - 50);
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 //Draws the menu (toolbar) in the simulation mode
 void UI::CreateSimulationToolBar()
 {
 	AppMode = SIMULATION;	//Simulation Mode
-
+	pWind->SetPen(RED, 3);
+	pWind->DrawLine(width - 100,100, width - 100, height-100);
 	//TODO: Write code to draw the simualtion toolbar (similar to that of design toolbar drawing)
-
 
 }
 
@@ -282,6 +283,18 @@ void UI::DrawOR2(const GraphicsInfo& r_GfxInfo, bool selected) const
 		GateImage = "Images\\Gates\\OR.jpg";
 	else
 		GateImage = "Images\\Gates\\OR_Hi.jpg";
+
+	//Draw AND2 Gate at Gfx_Info (1st corner)
+	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
+	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
+}
+void UI::DrawNOR(const GraphicsInfo& r_GfxInfo, bool selected) const
+{
+	string GateImage;
+	if (selected)	//use image in the highlighted case
+		GateImage = "Images\\Gates\\NOR.jpg";
+	else
+		GateImage = "Images\\Gates\\NOR_Hi.jpg";
 
 	//Draw AND2 Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info

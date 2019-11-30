@@ -136,6 +136,12 @@
     <ClInclude Include="Actions\empty.h">
       <Filter>Actions</Filter>
     </ClInclude>
+    <ClInclude Include="Actions\AddNORgate.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\NOR.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\AND2.cpp">
@@ -295,6 +301,12 @@
     </ClCompile>
     <ClCompile Include="Actions\delete.cpp">
       <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddNORgate.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\NOR.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
