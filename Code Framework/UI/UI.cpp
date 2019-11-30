@@ -8,8 +8,8 @@ UI::UI()
 	DrawColor = BLACK;
 	SelectColor = BLUE;
 	ConnColor = RED;
-	MsgColor = BLUE;
-	BkGrndColor =GREEN;
+	MsgColor = RED;
+	BkGrndColor =WHITE;
 	
 	//Create the drawing window
 	pWind = new window(width, height, wx, wy);	

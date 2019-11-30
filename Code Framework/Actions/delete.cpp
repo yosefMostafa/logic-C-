@@ -18,7 +18,7 @@ void delete1::Execute()
 	UI* pUI = pManager->GetUI();
 
 	//Print Action Message
-	pUI->PrintMsg("2-Input AND Gate: Click to add the gate");
+	pUI->PrintMsg("Click to delete the gate");
 
 	//Get Center point of the Gate
 	pUI->GetPointClicked(Cx, Cy);
