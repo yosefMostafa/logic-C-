@@ -1,5 +1,4 @@
-#ifndef __UI_H_
-#define __UI_H_
+#pragma once
 
 #include "..\CMUgraphicsLib\CMUgraphics.h"
 #include "..\Defs.h"
@@ -124,6 +123,7 @@ public:
 	void DrawNAND2(const GraphicsInfo& r_GfxInfo, bool selected) const;
 	void DrawOR2(const GraphicsInfo& r_GfxInfo, bool selected) const;
 	void DrawNOR(const GraphicsInfo& r_GfxInfo, bool selected) const;
+	void DrawXOR(const GraphicsInfo& r_GfxInfo, bool selected) const;
 	///TODO: Make similar functions for drawing all other gates, switch, and LED, .. etc
 
 	// Draws Connection
@@ -134,4 +134,3 @@ public:
 	~UI();
 };
 
-#endif

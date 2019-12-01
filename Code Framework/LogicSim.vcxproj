@@ -67,6 +67,7 @@
     <ClInclude Include="Actions\addconc.h" />
     <ClInclude Include="Actions\AddNANDgate.h" />
     <ClInclude Include="Actions\AddNORgate.h" />
+    <ClInclude Include="Actions\AddXORgate.h" />
     <ClInclude Include="Actions\empty.h" />
     <ClInclude Include="Actions\selectd.h" />
     <ClInclude Include="Actions\delete.h" />
@@ -102,6 +103,7 @@
     <ClInclude Include="Components\NOR.h" />
     <ClInclude Include="Components\OutputPin.h" />
     <ClInclude Include="Components\Pin.h" />
+    <ClInclude Include="Components\XOR.h" />
     <ClInclude Include="Defs.H" />
     <ClInclude Include="ADDORgate2.h" />
     <ClInclude Include="OR2.h" />
@@ -112,6 +114,7 @@
     <ClCompile Include="Actions\addconc.cpp" />
     <ClCompile Include="Actions\AddNANDgate.cpp" />
     <ClCompile Include="Actions\AddNORgate.cpp" />
+    <ClCompile Include="Actions\AddXORgate.cpp" />
     <ClCompile Include="Actions\delete.cpp" />
     <ClCompile Include="Actions\selectd.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
@@ -162,6 +165,7 @@
     <ClCompile Include="Components\NOR.cpp" />
     <ClCompile Include="Components\OutputPin.cpp" />
     <ClCompile Include="Components\Pin.cpp" />
+    <ClCompile Include="Components\XOR.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ADDORgate2.cpp" />
     <ClCompile Include="OR2.cpp" />

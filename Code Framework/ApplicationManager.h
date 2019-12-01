@@ -20,7 +20,7 @@ private:
 
 public:
 	int CompCount;		//Actual number of Components
-	Component* CompList[MaxCompCount];
+	Component * CompList[MaxCompCount];
 
 public:	
 	ApplicationManager(); //constructor

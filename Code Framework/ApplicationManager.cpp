@@ -1,5 +1,6 @@
 #include "ApplicationManager.h"
 #include "Actions\AddANDgate2.h"
+#include "Actions\AddXORgate.h"
 #include "Actions\AddNANDgate.h"
 #include "Actions\AddNORgate.h"
 #include "Actions\Addconc.h"
@@ -43,6 +44,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		UI *pUI;
 		case ADD_AND_GATE_2:
 			pAct= new AddANDgate2(this);
+			break;
+		case ADD_XOR_GATE_2:
+			pAct = new AddXORgate(this);
 			break;
 		case ADD_OR_GATE_2:
 			pAct = new AddORgate2(this);
