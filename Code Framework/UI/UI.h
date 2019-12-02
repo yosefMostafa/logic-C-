@@ -102,6 +102,9 @@ public:
 	// Input Functions  ---------------------------
 	void GetPointClicked(int &, int &);	//Get coordinate where user clicks
 	string GetSrting();		//Returns a string entered by the user
+	void drawRectangle(int x,int y,int x1,int x2);
+	void drawline(int x, int y, int x1, int x2);
+
 
 	ActionType GetUserAction() ; //Reads the user click and maps it to an action
 

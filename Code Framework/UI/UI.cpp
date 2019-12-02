@@ -85,6 +85,8 @@ ActionType UI::GetUserAction()
 	pWind->WaitMouseClick(x, y);	//Get the coordinates of the user click
 	lastclicky = y;
 	lastclickx = x;
+	
+
 	if(AppMode == DESIGN )	//application is in design mode
 	{
 		//[1] If user clicks on the Toolbar
@@ -223,13 +225,6 @@ void UI::CreateDesignToolBar()
 	}
 	pWind->SetPen(RED,3);
 	pWind->DrawLine(0, ToolBarHeight + 15, width-100, ToolBarHeight + 15);
-	pWind->SetPen(BLACK, 1);
-	for (int i = 0; i < width-100; i = i + 15) {
-		pWind->DrawLine(i,95 , i, height-50);
-	}
-	for (int i = 0; i < height-150; i = i + 15) {
-		pWind->DrawLine(0,i+95, width-100,i+95);
-	}
 	pWind->SetPen(RED, 3);
 	pWind->DrawLine(width - 100, 95, width - 100, height - 50);
 }
@@ -318,7 +313,12 @@ void UI::DrawNOR(const GraphicsInfo& r_GfxInfo, bool selected) const
 
 void UI::DrawConnection(const GraphicsInfo& r_GfxInfo, bool selected) 
 {
-	pWind->SetPen(BLACK, 5);
+	
+	if (selected) {
+		pWind->SetPen(BLACK, 5);
+	}else{
+		pWind->SetPen(RED, 5);
+	}
 	pWind->DrawLine(r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[0].y);
 	pWind->DrawLine(r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[0].y, r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[1].y);//TODO: Add code to draw connection
 }
@@ -327,4 +327,12 @@ void UI::DrawConnection(const GraphicsInfo& r_GfxInfo, bool selected)
 UI::~UI()
 {
 	delete pWind;
+}
+void UI::drawRectangle(int x, int y, int x1, int y1) {
+	pWind->SetPen(WHITE, 1);
+	pWind->DrawRectangle(x, y,x1, y1);
+}
+void UI::drawline(int x, int y, int x1, int y1) {
+	pWind->SetPen(BLACK, 1);
+	pWind->DrawLine(x, y, x1, y1);
 }

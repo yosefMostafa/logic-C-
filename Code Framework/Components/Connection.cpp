@@ -33,7 +33,7 @@ void Connection::Operate()
 void Connection::Draw(UI* pUI)
 {
 
-	pUI->DrawConnection(*m_pGfxInfo,1);
+	pUI->DrawConnection(*m_pGfxInfo,trandfa);
 }
 
 int Connection::GetOutPinStatus()	//returns status of outputpin if LED, return -1

@@ -27,7 +27,10 @@ void delete1::Execute()
 	pUI->ClearStatusBar();
 	for (int i = 0; i < pManager->CompCount; i++) {
 		if (pManager->CompList[i]->selected(Cx, Cy)) {
-			pUI->PrintMsg("deleted");//yosef added
+			delete pManager->CompList[i];//yosef added
+			pManager->CompList[i] = pManager->CompList[pManager->CompCount - 1];
+			pManager->CompCount = pManager->CompCount - 1;
+			pUI->PrintMsg("deleted");
 			//pManager->CompList[i]=new empty(this);
 		}
 		else {
