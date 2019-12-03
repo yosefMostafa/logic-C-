@@ -21,13 +21,9 @@ void NAND2::Operate()
 // Draws 2-input AND gate
 void NAND2::Draw(UI* pUI)
 {
-	if (trandfa) {
+	
 		//Call output class and pass gate drawing info to it.
 		pUI->DrawNAND2(*m_pGfxInfo, trandfa);
-	}
-	else {
-		pUI->DrawNAND2(*m_pGfxInfo, trandfa);
-	}
 }
 
 //returns status of outputpin

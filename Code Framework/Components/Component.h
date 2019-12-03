@@ -13,6 +13,7 @@ protected:
 	GraphicsInfo *m_pGfxInfo;	//The parameters required to draw a component
 public:
 	bool trandfa;
+	int liorcomp;
 	Component(GraphicsInfo *r_GfxInfo);
 	virtual void Operate() = 0;	//Calculates the output according to the inputs
 	virtual void Draw(UI* ) = 0;	//for each component to Draw itself

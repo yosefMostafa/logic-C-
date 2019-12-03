@@ -133,9 +133,6 @@
     <ClInclude Include="Actions\delete.h">
       <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="Actions\empty.h">
-      <Filter>Actions</Filter>
-    </ClInclude>
     <ClInclude Include="Actions\AddNORgate.h">
       <Filter>Actions</Filter>
     </ClInclude>
@@ -146,6 +143,12 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="Components\XOR.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddXNORgate.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\XNOR.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -318,6 +321,12 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="Components\XOR.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddXNORgate .cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\XNOR.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>

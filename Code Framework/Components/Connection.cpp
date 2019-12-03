@@ -6,8 +6,8 @@ Connection::Connection(GraphicsInfo *r_GfxInfo, OutputPin *pSrcPin,InputPin *pDs
 	SrcPin = pSrcPin;
 	DstPin = pDstPin;
 }
-Connection::Connection(GraphicsInfo* r_GfxInfo) {
-	m_pGfxInfo = r_GfxInfo;
+Connection::Connection(GraphicsInfo* r_GfxInfo, bool trfa) :Component(r_GfxInfo) {
+	trandfa = trfa;
 }
 void Connection::setSourcePin(OutputPin *pSrcPin)
 {	SrcPin = pSrcPin;	}
@@ -52,5 +52,13 @@ void Connection::setInputPinStatus(int n, STATUS s)
 	SrcPin->setStatus(s);
 }
 bool Connection::selected(int x, int y) {
-	return true;
+	int z = m_pGfxInfo->PointsList[1].x;
+	if ( (y<=(m_pGfxInfo->PointsList[0].y)+5 && y>= (m_pGfxInfo->PointsList[0].y)-5)&&((x> m_pGfxInfo->PointsList[0].x&&x< m_pGfxInfo->PointsList[1].x)||(x> m_pGfxInfo->PointsList[1].x&& x<m_pGfxInfo->PointsList[0].x))) {
+		return true;
+	}if ((x<=(m_pGfxInfo->PointsList[1].x)+5 && x>=( m_pGfxInfo->PointsList[1].x)-5)&&((y> m_pGfxInfo->PointsList[0].y&&y< m_pGfxInfo->PointsList[1].y)||(y> m_pGfxInfo->PointsList[1].y&&y< m_pGfxInfo->PointsList[0].y))) {
+		return true;
+	}else {
+		false;
+	}
+	return false;
 }

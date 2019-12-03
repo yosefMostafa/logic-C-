@@ -37,7 +37,7 @@ enum ActionType
 	SIM_MODE,	//Switch to Simulatiom mode
 
 	EXIT,		//Exit the application
-
+	TRUTH_TABLE,
 	STATUS_BAR,		//A click on the status bar
 	DSN_TOOL,	//A click on an empty place in the design tool bar
 

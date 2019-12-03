@@ -1,13 +1,13 @@
 #include "D:\zewail\Y2 Fall\C++\CIE202 - Project Fall 2019 - student\logic-C-\Code Framework\ApplicationManager.h"
 #include "addconc.h"
-#include "D:\zewail\Y2 Fall\C++\CIE202 - Project Fall 2019 - student\logic-C-\Code Framework\Components\Connection.h"
+#include "..\Components\Connection.h"
 void addconc::Execute() {
 	//Get a Pointer to the user Interfaces
 	UI* pUI = pManager->GetUI();
 
 	//Print Action Message
 	pUI->PrintMsg("2-Input draw line : Click to add the gate");
-
+	int Cx, Cy, Cx1, Cy1;	//ends of the line 
 	//Get Center point of the Gate
 	pUI->GetPointClicked(Cx, Cy);
 	pUI->GetPointClicked(Cx1, Cy1);
@@ -24,8 +24,8 @@ void addconc::Execute() {
 	pGInfo->PointsList[1].x = Cx1;
 	pGInfo->PointsList[1].y = Cy1;
 	// TODO: Check thet the pointys belong to pins
-	//pManager->CompList[0];
-	Connection* pA = new Connection(pGInfo);
+	
+	Connection* pA = new Connection(pGInfo,1);
 	pManager->AddComponent(pA);
 	
 }

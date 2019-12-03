@@ -2,6 +2,7 @@
 #include "Actions\AddANDgate2.h"
 #include "Actions\AddXORgate.h"
 #include "Actions\AddNANDgate.h"
+#include "Actions\AddXNORgate.h"
 #include "Actions\AddNORgate.h"
 #include "Actions\Addconc.h"
 #include "Actions\delete.h"
@@ -60,15 +61,16 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case ADD_NOR_GATE_2:
 			pAct = new AddNORgate(this);
 			break;
+			case ADD_XNOR_GATE_2:
+				pAct = new AddXNORgate(this);
+				break;
 		case DEL:
 			pAct = new delete1(this);
 			break;
 		case SELECT:
 			pAct = new selectd(this);
 				break;
-
 		case EXIT:
-			///TODO: create ExitAction here
 			break;
 	}
 	if(pAct)
@@ -83,11 +85,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 void ApplicationManager::UpdateInterface()
 {
 	int width = 1280; int height = 720;
-	pUI->drawRectangle(0, 100, 1280- 100, 720 - 50);
-	for (int i = 0; i < width - 100; i = i + 15) {
+	pUI->drawRectangle(0, 96, width- 100, height - 50);
+	for (int i = 0; i < width - 100; i = i + 20) {
 		pUI->drawline(i, 95, i, height - 50);
 	}
-	for (int i = 0; i < height - 150; i = i + 15) {
+	for (int i = 0; i < height - 150; i = i + 20) {
 		pUI->drawline(0, i + 95, width - 100, i + 95);
 	}
 		for(int i=0; i<CompCount; i++)

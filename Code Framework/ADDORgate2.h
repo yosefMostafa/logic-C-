@@ -20,8 +20,6 @@ public:
 
 	virtual void Undo();
 	virtual void Redo();
-
-
 };
 
 #endif

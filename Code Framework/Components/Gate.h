@@ -18,11 +18,10 @@ class Gate:public Component
 protected:
 	InputPin* m_InputPins;	//Array of input pins of the Gate
 	OutputPin m_OutputPin;	//The Gate output pin
-	int m_Inputs;
-	int px, py;//No. of input pins of that Gate.
+	int m_Inputs;	
 public:
 	Gate(GraphicsInfo* pGfxInfo, int r_Inputs, int r_FanOut);
-	 bool selected(int x, int y);
+	bool selected(int x, int y);
 
 };
 

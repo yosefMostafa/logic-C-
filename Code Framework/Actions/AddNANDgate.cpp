@@ -1,7 +1,7 @@
 #include "AddNANDgate.h"
 #include<iostream>
 #include "..\ApplicationManager.h"
-#include"selectd.h"
+
 
 AddNANDgate2::AddNANDgate2(ApplicationManager* pApp) :Action(pApp)
 {

@@ -1,16 +1,10 @@
 #pragma once
-/*
-  Class AND2
-  -----------
-  represent the 2-input AND gate
-*/
-
 #include "Gate.h"
 
-class NAND2 :public Gate
+class XNOR :public Gate
 {
 public:
-	NAND2(GraphicsInfo* r_pGfxInfo, int r_FanOut, bool tf);
+	XNOR(GraphicsInfo* r_pGfxInfo, int r_FanOut, bool tf);
 	virtual void Operate();	//Calculates the output of the AND gate
 	virtual void Draw(UI*);	//Draws 2-input gate
 
@@ -21,4 +15,3 @@ public:
 
 
 };
-

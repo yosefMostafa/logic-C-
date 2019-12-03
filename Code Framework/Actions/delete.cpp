@@ -1,7 +1,6 @@
 #include "delete.h"
 #include<iostream>
 #include "..\ApplicationManager.h"
-#include "empty.h"
 
 delete1::delete1(ApplicationManager* pApp) :Action(pApp)
 {
@@ -19,7 +18,7 @@ void delete1::Execute()
 
 	//Print Action Message
 	pUI->PrintMsg("Click to delete the gate");
-
+	int Cx, Cy;
 	//Get Center point of the Gate
 	pUI->GetPointClicked(Cx, Cy);
 
@@ -31,7 +30,6 @@ void delete1::Execute()
 			pManager->CompList[i] = pManager->CompList[pManager->CompCount - 1];
 			pManager->CompCount = pManager->CompCount - 1;
 			pUI->PrintMsg("deleted");
-			//pManager->CompList[i]=new empty(this);
 		}
 		else {
 			pUI->PrintMsg("an empty place");

@@ -32,7 +32,13 @@ struct GraphicsInfo
 
 class UI
 {
-
+	enum StgnMenuItem
+	{
+		IIM_TRUTHTABLE,
+		ITM_DM,
+		EXIT1,
+		ITM_STN_CNT
+	};
 	enum DsgnMenuItem //The items of the design menu (you should add more items)
 	{
 		//Note: Items are ordered here as they appear in menu
@@ -49,6 +55,7 @@ class UI
 		ITM_REDO,
 		ITM_SAVE,
 		ITM_LOAD,
+		ITM_SM,
 		ITM_EXIT,		//Exit item
 		
 		//TODO: Add more items names here
@@ -93,9 +100,12 @@ class UI
 						GATE_Height = 50;		//Gate Image default height
 
 	window* pWind;
-public:
+private:
 	int lastclickx;
 	int lastclicky;
+public:
+	int getlastclickx();
+	int getlastclicky();
 	UI();
 	int getGateWidth() const;
 	int getGateHeight() const;	
@@ -127,6 +137,7 @@ public:
 	void DrawOR2(const GraphicsInfo& r_GfxInfo, bool selected) const;
 	void DrawNOR(const GraphicsInfo& r_GfxInfo, bool selected) const;
 	void DrawXOR(const GraphicsInfo& r_GfxInfo, bool selected) const;
+	void DrawXNOR(const GraphicsInfo& r_GfxInfo, bool selected) const;
 	///TODO: Make similar functions for drawing all other gates, switch, and LED, .. etc
 
 	// Draws Connection

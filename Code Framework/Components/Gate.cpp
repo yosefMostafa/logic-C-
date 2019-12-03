@@ -15,11 +15,10 @@ Gate::Gate(GraphicsInfo* pGfxInfo, int r_Inputs, int r_FanOut):Component(pGfxInf
 		m_InputPins[i].setComponent(this);
 }
 bool Gate::selected(int x, int y) {
-	px = x; py = y;
-	if (px >= m_pGfxInfo->PointsList[0].x && px <= m_pGfxInfo->PointsList[1].x && py >= m_pGfxInfo->PointsList[0].y && py <= m_pGfxInfo->PointsList[1].y) {
-		return true;
-	}
-	else {
-		return false;
-	}
+		if (x >= m_pGfxInfo->PointsList[0].x &&x <= m_pGfxInfo->PointsList[1].x && y >= m_pGfxInfo->PointsList[0].y && y <= m_pGfxInfo->PointsList[1].y) {
+			return true;
+		}
+		else {
+			return false;
+		}
 }

@@ -1,16 +1,17 @@
-#include "AddNORgate.h"
+#include "AddXNORgate.h"
 #include<iostream>
 #include "..\ApplicationManager.h"
+#include "..\Components\XNOR.h"
 
-AddNORgate::AddNORgate(ApplicationManager* pApp) :Action(pApp)
+AddXNORgate::AddXNORgate(ApplicationManager* pApp) :Action(pApp)
 {
 }
 
-AddNORgate::~AddNORgate(void)
+AddXNORgate::~AddXNORgate(void)
 {
 }
 
-void AddNORgate::Execute()
+void AddXNORgate::Execute()
 {
 
 	//Get a Pointer to the user Interfaces
@@ -34,13 +35,14 @@ void AddNORgate::Execute()
 	pGInfo->PointsList[0].y = Cy - gateHeight / 2;
 	pGInfo->PointsList[1].x = Cx + gateWidth / 2;
 	pGInfo->PointsList[1].y = Cy + gateHeight / 2;
-	NOR* pA = new NOR(pGInfo, AND2_FANOUT, true);
+	XNOR* pA = new XNOR(pGInfo, AND2_FANOUT, true);
 	pManager->AddComponent(pA);
 }
 
 
-void AddNORgate::Undo()
+void AddXNORgate::Undo()
 {}
 
-void AddNORgate::Redo()
+void AddXNORgate::Redo()
 {}
+

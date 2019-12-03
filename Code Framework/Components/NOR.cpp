@@ -21,13 +21,8 @@ void NOR::Operate()
 // Draws 2-input AND gate
 void NOR::Draw(UI* pUI)
 {
-	if (trandfa) {
 		//Call output class and pass gate drawing info to it.
 		pUI->DrawNOR(*m_pGfxInfo, trandfa);
-	}
-	else {
-		pUI->DrawNOR(*m_pGfxInfo, trandfa);
-	}
 }
 
 //returns status of outputpin

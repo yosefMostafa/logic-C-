@@ -1,13 +1,15 @@
-#include "OR2.h"
+#include "XNOR.h"
 
 
-OR2::OR2(GraphicsInfo* r_pGfxInfo, int r_FanOut,bool tf) :Gate(r_pGfxInfo, 2, r_FanOut)
+
+
+XNOR::XNOR(GraphicsInfo* r_pGfxInfo, int r_FanOut, bool tf) :Gate(r_pGfxInfo, 2, r_FanOut)
 {
-	trandfa = tf; 
+	trandfa = tf;
 }
 
 
-void OR2::Operate()
+void XNOR::Operate()
 {
 	//caclulate the output status as the ANDing of the two input pins
 
@@ -17,27 +19,26 @@ void OR2::Operate()
 
 // Function Draw
 // Draws 2-input AND gate
-void OR2::Draw(UI* pUI)
-{
-		//Call output class and pass gate drawing info to it.
-		pUI->DrawOR2(*m_pGfxInfo, trandfa);
+void XNOR::Draw(UI* pUI)
+{		//Call output class and pass gate drawing info to it.
+		pUI->DrawXNOR(*m_pGfxInfo, trandfa);	
 }
 
 //returns status of outputpin
-int OR2::GetOutPinStatus()
+int XNOR::GetOutPinStatus()
 {
 	return m_OutputPin.getStatus();
 }
 
 
 //returns status of Inputpin #n
-int OR2::GetInputPinStatus(int n)
+int XNOR::GetInputPinStatus(int n)
 {
 	return m_InputPins[n - 1].getStatus();	//n starts from 1 but array index starts from 0.
 }
 
 //Set status of an input pin ot HIGH or LOW
-void OR2::setInputPinStatus(int n, STATUS s)
+void XNOR::setInputPinStatus(int n, STATUS s)
 {
 	m_InputPins[n - 1].setStatus(s);
 }

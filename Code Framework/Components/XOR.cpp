@@ -5,7 +5,7 @@
 
 XOR::XOR(GraphicsInfo* r_pGfxInfo, int r_FanOut, bool tf) :Gate(r_pGfxInfo, 2, r_FanOut)
 {
-	trandfa = tf;
+	trandfa = tf; 
 }
 
 
@@ -21,13 +21,8 @@ void XOR::Operate()
 // Draws 2-input AND gate
 void XOR::Draw(UI* pUI)
 {
-	if (trandfa) {
 		//Call output class and pass gate drawing info to it.
 		pUI->DrawXOR(*m_pGfxInfo, trandfa);
-	}
-	else {
-		pUI->DrawXOR(*m_pGfxInfo, trandfa);
-	}
 }
 
 //returns status of outputpin
