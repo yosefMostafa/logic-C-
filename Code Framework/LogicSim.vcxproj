@@ -69,8 +69,6 @@
     <ClInclude Include="Actions\AddNORgate.h" />
     <ClInclude Include="Actions\AddXNORgate.h" />
     <ClInclude Include="Actions\AddXORgate.h" />
-    <ClInclude Include="Actions\selectd.h" />
-    <ClInclude Include="Actions\delete.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -117,8 +115,6 @@
     <ClCompile Include="Actions\AddNORgate.cpp" />
     <ClCompile Include="Actions\AddXNORgate .cpp" />
     <ClCompile Include="Actions\AddXORgate.cpp" />
-    <ClCompile Include="Actions\delete.cpp" />
-    <ClCompile Include="Actions\selectd.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

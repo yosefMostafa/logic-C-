@@ -22,7 +22,7 @@ void AND2::Operate()
 void AND2::Draw(UI* pUI)
 {
 		//Call output class and pass gate drawing info to it.
-		pUI->DrawAND2(*m_pGfxInfo,trandfa);
+		pUI->DrawAND2(*m_pGfxInfo,trandfa,"And");
 	
 }
 
@@ -43,4 +43,8 @@ int AND2::GetInputPinStatus(int n)
 void AND2::setInputPinStatus(int n, STATUS s)
 {
 	m_InputPins[n-1].setStatus(s);
+}
+void AND2::save(ofstream &data) {
+	
+	data << AND << "  " << m_pGfxInfo->PointsList[0].x << "  " << m_pGfxInfo->PointsList[0].y <<"  "<< m_pGfxInfo->PointsList[1].x << "  " << m_pGfxInfo->PointsList[1].y << endl;
 }

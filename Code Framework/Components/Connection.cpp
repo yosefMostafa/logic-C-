@@ -1,11 +1,11 @@
 #include "Connection.h"
 
-Connection::Connection(GraphicsInfo *r_GfxInfo, OutputPin *pSrcPin,InputPin *pDstPin):Component(r_GfxInfo)	
-{
-	*m_pGfxInfo = *r_GfxInfo;
-	SrcPin = pSrcPin;
-	DstPin = pDstPin;
-}
+//Connection::Connection(GraphicsInfo *r_GfxInfo, OutputPin *pSrcPin,InputPin *pDstPin):Component(r_GfxInfo)	
+//{
+	//*m_pGfxInfo = *r_GfxInfo;
+	//SrcPin = pSrcPin;
+	//DstPin = pDstPin;
+//}
 Connection::Connection(GraphicsInfo* r_GfxInfo, bool trfa) :Component(r_GfxInfo) {
 	trandfa = trfa;
 }
@@ -62,3 +62,7 @@ bool Connection::selected(int x, int y) {
 	}
 	return false;
 }
+
+void Connection::save(ofstream &data) {
+	data << LINE << "  " << m_pGfxInfo->PointsList[0].x << "  " << m_pGfxInfo->PointsList[0].y << "  " << m_pGfxInfo->PointsList[1].x << "  " << m_pGfxInfo->PointsList[1].y << endl;
+};

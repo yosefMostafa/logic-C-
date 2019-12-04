@@ -42,3 +42,6 @@ void XNOR::setInputPinStatus(int n, STATUS s)
 {
 	m_InputPins[n - 1].setStatus(s);
 }
+void XNOR::save(ofstream& data) {
+	data << XNOR1 << "  " << m_pGfxInfo->PointsList[0].x << "  " << m_pGfxInfo->PointsList[0].y << "  " << m_pGfxInfo->PointsList[1].x << "  " << m_pGfxInfo->PointsList[1].y << endl;
+}

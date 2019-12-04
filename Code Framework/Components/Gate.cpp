@@ -1,5 +1,6 @@
 #include "Gate.h"
-
+#include<fstream>
+using namespace std;
 //Gate Constructor
 //Parameters:
 //r_Inputs: no. of gate's input pins
@@ -21,4 +22,7 @@ bool Gate::selected(int x, int y) {
 		else {
 			return false;
 		}
+}
+void Gate::save(ofstream &data) {
+
 }

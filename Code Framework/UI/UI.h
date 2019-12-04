@@ -114,6 +114,7 @@ public:
 	string GetSrting();		//Returns a string entered by the user
 	void drawRectangle(int x,int y,int x1,int x2);
 	void drawline(int x, int y, int x1, int x2);
+	void drawstring(int x, int y,string f);
 
 
 	ActionType GetUserAction() ; //Reads the user click and maps it to an action
@@ -132,7 +133,7 @@ public:
 
 		
 	// Draws 2-input AND gate
-	void DrawAND2(const GraphicsInfo &r_GfxInfo, bool selected = false) const;
+	void DrawAND2(const GraphicsInfo &r_GfxInfo, bool selected ,string f) const;
 	void DrawNAND2(const GraphicsInfo& r_GfxInfo, bool selected) const;
 	void DrawOR2(const GraphicsInfo& r_GfxInfo, bool selected) const;
 	void DrawNOR(const GraphicsInfo& r_GfxInfo, bool selected) const;

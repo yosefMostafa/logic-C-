@@ -17,11 +17,9 @@ private:
 
 	UI* pUI; //pointer to the UI
 
-
-public:
+	
 	int CompCount;		//Actual number of Components
-	Component * CompList[MaxCompCount];
-
+	Component* CompList[MaxCompCount];
 public:	
 	ApplicationManager(); //constructor
 	//Reads the required action from the user and returns the corresponding action type
@@ -29,12 +27,15 @@ public:
 	
 	//Creates an action and executes it
 	void ExecuteAction(ActionType);
+	void delete1();
+	void save();
+	void load();
+	void selectd();
 	
 	void UpdateInterface();	//Redraws all the drawing window
 
 	//Gets a pointer to UI Object
 	UI* GetUI();
-	
 
 	//Adds a new component to the list of components
 	void AddComponent(Component* pComp);

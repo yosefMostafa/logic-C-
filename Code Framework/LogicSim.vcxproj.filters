@@ -121,17 +121,11 @@
     <ClInclude Include="Actions\addconc.h">
       <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="Actions\selectd.h">
-      <Filter>Actions</Filter>
-    </ClInclude>
     <ClInclude Include="Actions\AddNANDgate.h">
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="Components\NAND.h">
       <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\delete.h">
-      <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="Actions\AddNORgate.h">
       <Filter>Actions</Filter>
@@ -299,17 +293,11 @@
     <ClCompile Include="Actions\addconc.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="Actions\selectd.cpp">
-      <Filter>Actions</Filter>
-    </ClCompile>
     <ClCompile Include="Actions\AddNANDgate.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="Components\NAND.cpp">
       <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\delete.cpp">
-      <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="Actions\AddNORgate.cpp">
       <Filter>Actions</Filter>

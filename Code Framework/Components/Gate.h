@@ -12,7 +12,8 @@
 #include "InputPin.h"
 #include "OutputPin.h"
 #include "Component.h"
-
+#include<fstream>
+using namespace std;
 class Gate:public Component
 {
 protected:
@@ -22,6 +23,7 @@ protected:
 public:
 	Gate(GraphicsInfo* pGfxInfo, int r_Inputs, int r_FanOut);
 	bool selected(int x, int y);
+	virtual void save(ofstream &data);
 
 };
 

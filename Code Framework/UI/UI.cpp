@@ -297,7 +297,7 @@ void UI::CreateSimulationToolBar()
 //								Components Drawing Functions							//
 //======================================================================================//
 
-void UI::DrawAND2(const GraphicsInfo &r_GfxInfo, bool selected) const
+void UI::DrawAND2(const GraphicsInfo &r_GfxInfo, bool selected,string f) const
 {
 	string GateImage;
 	if (selected) {//use image in the highlighted case
@@ -310,6 +310,9 @@ void UI::DrawAND2(const GraphicsInfo &r_GfxInfo, bool selected) const
 	//Draw AND2 Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
+	pWind->SetPen(BLACK, 20);
+	pWind->SetFont(20, 5, MODERN);
+	pWind->DrawString((r_GfxInfo.PointsList[0].x+GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y+GATE_Height + 5, f);
 }
 void UI::DrawNAND2(const GraphicsInfo& r_GfxInfo, bool selected) const
 {
@@ -409,4 +412,7 @@ int UI::getlastclickx() {
 }
 int UI::getlastclicky() {
 	return lastclicky;
+}
+void UI::drawstring(int x, int y, string f) {
+	pWind->DrawString(x, y, f);
 }

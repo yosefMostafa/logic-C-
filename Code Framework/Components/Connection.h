@@ -1,8 +1,10 @@
 #pragma once
+#include <iostream>
 #include "component.h"
 #include "InputPin.h"
 #include "OutputPin.h"
-
+#include<fstream>
+using namespace std;
 class Connection :	public Component
 {
 	//Component*	SrcCmpnt;	//Connection source component
@@ -12,11 +14,12 @@ class Connection :	public Component
 	InputPin* DstPin;	//The Destination pin of this connection (an input pin of certain Component)
 public:
 	//Connection(const GraphicsInfo &r_GfxInfo, Component *pS=NULL,Component *pD=NULL, int Pin=0);
-	Connection(GraphicsInfo *r_GfxInfo, OutputPin *pSrcPin, InputPin *pDstPin);
+	//Connection(GraphicsInfo *r_GfxInfo, OutputPin *pSrcPin, InputPin *pDstPin);
 	Connection(GraphicsInfo* r_GfxInfo,bool trfa);
 	virtual void Operate() ;	//Calculates the output according to the inputs
 	virtual void Draw(UI* );//for each component to Draw itself
 	virtual bool selected(int x, int y);
+	virtual void save(ofstream &data);
 	void setSourcePin(OutputPin *pSrcPin);
 	void setDestPin(InputPin *pDstPin);
 	OutputPin* getSourcePin();

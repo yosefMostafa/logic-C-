@@ -5,12 +5,14 @@
 #include "Actions\AddXNORgate.h"
 #include "Actions\AddNORgate.h"
 #include "Actions\Addconc.h"
-#include "Actions\delete.h"
-#include "Actions\selectd.h"
 #include "Actions\AddORgate2.h"
 #include "Actions\Action.h"
+#include "Components\OR2.h"
+#include "Components\XOR.h"
+#include "Components\connection.h"
 #include <iostream>
-
+#include <fstream>
+using namespace std;
 
 
 ApplicationManager::ApplicationManager()
@@ -61,15 +63,21 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case ADD_NOR_GATE_2:
 			pAct = new AddNORgate(this);
 			break;
-			case ADD_XNOR_GATE_2:
-				pAct = new AddXNORgate(this);
-				break;
+		case ADD_XNOR_GATE_2:
+			pAct = new AddXNORgate(this);
+			break;
 		case DEL:
-			pAct = new delete1(this);
+			delete1();
 			break;
 		case SELECT:
-			pAct = new selectd(this);
-				break;
+			selectd();
+			break;
+		case SAVE:
+			save();
+			break;
+		case LOAD:
+			load();
+			break;
 		case EXIT:
 			break;
 	}
@@ -111,4 +119,107 @@ ApplicationManager::~ApplicationManager()
 		delete CompList[i];
 	delete pUI;
 	
+}
+///////////////////////////////////////////////////////////////////
+void ApplicationManager::delete1() {
+	//Get a Pointer to the user Interfaces
+
+	//Print Action Message
+	pUI->PrintMsg("Click to delete the gate");
+	int Cx, Cy;
+	//Get Center point of the Gate
+	pUI->GetPointClicked(Cx, Cy);
+
+	//Clear Status Bar
+	pUI->ClearStatusBar();
+	for (int i = 0; i <CompCount; i++) {
+		if (CompList[i]->selected(Cx, Cy)) {
+			delete CompList[i];//yosef added
+			CompList[i] = CompList[CompCount - 1];
+			CompCount =CompCount - 1;
+			pUI->PrintMsg("deleted");
+		}
+		else {
+			pUI->PrintMsg("an empty place");
+		}
+	}
+}
+///////////////////////////////////////////////////////////////////
+void ApplicationManager::selectd() {
+
+	for (int i = 0; i <CompCount; i++) {
+		if (CompList[i]->selected(pUI->getlastclickx(), pUI->getlastclicky())) {
+			CompList[i]->trandfa = false;
+		}
+		else {
+			CompList[i]->trandfa = true;
+		}
+	}
+}
+///////////////////////////////////////////////////////////////////
+void ApplicationManager::save() {
+	ofstream datafile_1;
+	datafile_1.open("data.txt");
+
+	for (int i = 0; i < CompCount; i++) 
+	 {
+		CompList[i]->save(datafile_1);
+	}
+	pUI->PrintMsg("saved");
+	datafile_1.close();
+}
+///////////////////////////////////////////////////////////////////
+void ApplicationManager::load() {
+	//string filedir;
+	//cout << "Enter file directory\n";
+	ifstream datafile_1("data.txt");
+	int gate;
+	enum gate {
+		AND,
+		OR,
+		NAND,
+		XOR1,
+		LINE,
+		XNOR1,
+		NOR1,
+		LEBGHT
+	};
+	int x, y, x1, y1;
+	while (datafile_1>>gate>>x>>y>>x1>>y1) {
+		GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Component
+		pGInfo->PointsList[0].x = x;
+		pGInfo->PointsList[0].y = y;
+		pGInfo->PointsList[1].x = x1;
+		pGInfo->PointsList[1].y = y1;
+		Component* pA = NULL;
+		switch(gate)
+		{
+			case AND:
+				pA = new AND2(pGInfo, AND2_FANOUT, true);
+				break;
+			case OR:
+				pA = new OR2(pGInfo, OR2_FANOUT, true);
+				break;
+			case NAND:
+				pA = new NAND2(pGInfo, AND2_FANOUT, true);
+				break;
+			case XOR1:
+				pA = new XOR(pGInfo, AND2_FANOUT, true);
+				break;
+			case LINE:
+				pA = new Connection(pGInfo,true);
+				AddComponent(pA);
+				break;
+			case XNOR1:
+				pA = new XNOR(pGInfo, AND2_FANOUT, true);
+				break;
+			case NOR1:
+				pA = new NOR(pGInfo, AND2_FANOUT, true);
+				break;
+		}
+		if (pA) {
+			AddComponent(pA);
+			pA = NULL;
+		}
+	}
 }
