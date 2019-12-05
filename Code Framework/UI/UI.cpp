@@ -443,3 +443,4 @@ void UI::drawstring(int x, int y, string f) {
 void UI::WaitKeyPress(char& key) {
 	pWind->WaitKeyPress(key);
 }
+

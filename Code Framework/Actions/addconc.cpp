@@ -6,7 +6,7 @@ void addconc::Execute() {
 	UI* pUI = pManager->GetUI();
 
 	//Print Action Message
-	pUI->PrintMsg("2-Input draw line : Click to add the gate");
+	pUI->PrintMsg("2-Input draw line : Click to add Connecction");
 	int Cx, Cy, Cx1, Cy1;	//ends of the line 
 	//Get Center point of the Gate
 	pUI->GetPointClicked(Cx, Cy);
