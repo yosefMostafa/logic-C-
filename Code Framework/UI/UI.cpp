@@ -182,8 +182,8 @@ void UI::ChangeTitle(string Title) const
 //////////////////////////////////////////////////////////////////////////////////
 void UI::CreateStatusBar() const
 {
-	pWind->SetPen(RED,3);
-	pWind->DrawLine(0, height-StatusBarHeight, width-100, height-StatusBarHeight);
+	pWind->SetPen(BLACK,3);
+	pWind->DrawLine(0, height-StatusBarHeight, width, height-StatusBarHeight);
 }
 //////////////////////////////////////////////////////////////////////////////////
 void UI::PrintMsg(string msg) const
@@ -268,9 +268,9 @@ void UI::CreateDesignToolBar()
 			pWind->DrawString(i * ToolItemWidth +25, 80, gatelabel[i]);
 		}
 	}
-	pWind->SetPen(RED,3);
-	pWind->DrawLine(0, ToolBarHeight + 15, width-100, ToolBarHeight + 15);
-	pWind->SetPen(RED, 3);
+	pWind->SetPen(BLACK,3);
+	pWind->DrawLine(0, ToolBarHeight + 15, width, ToolBarHeight + 15);
+	pWind->SetPen(BLACK, 3);
 	pWind->DrawLine(width - 100, 95, width - 100, height - 50);
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -317,7 +317,7 @@ void UI::DrawAND2(const GraphicsInfo &r_GfxInfo, bool selected,string f) const
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
 	pWind->SetPen(BLACK, 20);
-	pWind->SetFont(20, 5, MODERN);
+	pWind->SetFont(15, 5, MODERN);
 	pWind->DrawString((r_GfxInfo.PointsList[0].x+GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y+GATE_Height + 5, f);
 }
 void UI::DrawNAND2(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
@@ -334,7 +334,7 @@ void UI::DrawNAND2(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
 	pWind->SetPen(BLACK, 20);
-	pWind->SetFont(20, 5, MODERN);
+	pWind->SetFont(15, 5, MODERN);
 	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
 }
 void UI::DrawOR2(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
@@ -349,7 +349,7 @@ void UI::DrawOR2(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
 	pWind->SetPen(BLACK, 20);
-	pWind->SetFont(20, 5, MODERN);
+	pWind->SetFont(15, 5, MODERN);
 	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
 }
 void UI::DrawXOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
@@ -364,7 +364,7 @@ void UI::DrawXOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
 	pWind->SetPen(BLACK, 20);
-	pWind->SetFont(20, 5, MODERN);
+	pWind->SetFont(15, 5, MODERN);
 	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
 }
 void UI::DrawXNOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
@@ -379,7 +379,7 @@ void UI::DrawXNOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
 	pWind->SetPen(BLACK, 20);
-	pWind->SetFont(20, 5, MODERN);
+	pWind->SetFont(15, 5, MODERN);
 	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
 }
 void UI::DrawNOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
@@ -394,7 +394,7 @@ void UI::DrawNOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
 	pWind->SetPen(BLACK, 20);
-	pWind->SetFont(20, 5, MODERN);
+	pWind->SetFont(15, 5, MODERN);
 	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
 }
 
@@ -414,7 +414,7 @@ void UI::DrawConnection(const GraphicsInfo& r_GfxInfo, bool selected, string f)
 		pWind->DrawLine(r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[0].y, r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[1].y);//TODO: Add code to draw connection
 	}
 	pWind->SetPen(BLACK, 20);
-	pWind->SetFont(20, 5, MODERN);
+	pWind->SetFont(15, 5, MODERN);
 	pWind->DrawString(((r_GfxInfo.PointsList[0].x + r_GfxInfo.PointsList[1].x) / 2), r_GfxInfo.PointsList[0].y-25, f);
 }
 

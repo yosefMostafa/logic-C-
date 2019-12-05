@@ -205,13 +205,13 @@ void ApplicationManager::load() {
 	};
 	int x, y, x1, y1;
 	string label;
+	Component* pA = NULL;
 	while (datafile_1>>gate>>label>>x>>y>>x1>>y1) {
 		GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Component
 		pGInfo->PointsList[0].x = x;
 		pGInfo->PointsList[0].y = y;
 		pGInfo->PointsList[1].x = x1;
 		pGInfo->PointsList[1].y = y1;
-		Component* pA = NULL;
 		switch(gate)
 		{
 			case AND:
@@ -241,6 +241,7 @@ void ApplicationManager::load() {
 			pA = NULL;
 		}
 	}
+	delete pA;
 	datafile_1.close();
 }
 ///////////////////////////////////////////////////////////////////
