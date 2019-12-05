@@ -25,7 +25,7 @@ void addconc::Execute() {
 	pGInfo->PointsList[1].y = Cy1;
 	// TODO: Check thet the pointys belong to pins
 	
-	Connection* pA = new Connection(pGInfo,1);
+	Connection* pA = new Connection(pGInfo,true,"Line");
 	pManager->AddComponent(pA);
 	
 }

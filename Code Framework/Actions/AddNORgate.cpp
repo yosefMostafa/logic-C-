@@ -17,7 +17,7 @@ void AddNORgate::Execute()
 	UI* pUI = pManager->GetUI();
 
 	//Print Action Message
-	pUI->PrintMsg("2-Input AND Gate: Click to add the gate");
+	pUI->PrintMsg("2-Input NOR Gate: Click to add the gate");
 
 	//Get Center point of the Gate
 	pUI->GetPointClicked(Cx, Cy);
@@ -34,7 +34,7 @@ void AddNORgate::Execute()
 	pGInfo->PointsList[0].y = Cy - gateHeight / 2;
 	pGInfo->PointsList[1].x = Cx + gateWidth / 2;
 	pGInfo->PointsList[1].y = Cy + gateHeight / 2;
-	NOR* pA = new NOR(pGInfo, AND2_FANOUT, true);
+	NOR* pA = new NOR(pGInfo, AND2_FANOUT, true,"NOR");
 	pManager->AddComponent(pA);
 }
 

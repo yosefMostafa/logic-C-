@@ -3,9 +3,9 @@
 
 
 
-NAND2::NAND2(GraphicsInfo* r_pGfxInfo, int r_FanOut, bool tf) :Gate(r_pGfxInfo, 2, r_FanOut)
+NAND2::NAND2(GraphicsInfo* r_pGfxInfo, int r_FanOut, bool tf,string s) :Gate(r_pGfxInfo, 2, r_FanOut)
 {
-	trandfa = tf;
+	trandfa = tf; label = s;
 }
 
 
@@ -23,7 +23,7 @@ void NAND2::Draw(UI* pUI)
 {
 	
 		//Call output class and pass gate drawing info to it.
-		pUI->DrawNAND2(*m_pGfxInfo, trandfa);
+	pUI->DrawNAND2(*m_pGfxInfo, trandfa, label);
 }
 
 //returns status of outputpin
@@ -45,5 +45,5 @@ void NAND2::setInputPinStatus(int n, STATUS s)
 	m_InputPins[n - 1].setStatus(s);
 }
 void NAND2::save(ofstream& data) {
-	data << NAND << "  " << m_pGfxInfo->PointsList[0].x << "  " << m_pGfxInfo->PointsList[0].y << "  " << m_pGfxInfo->PointsList[1].x << "  " << m_pGfxInfo->PointsList[1].y << endl;
+	data << NAND << "  " << label << "  " << m_pGfxInfo->PointsList[0].x << "  " << m_pGfxInfo->PointsList[0].y << "  " << m_pGfxInfo->PointsList[1].x << "  " << m_pGfxInfo->PointsList[1].y << endl;
 }

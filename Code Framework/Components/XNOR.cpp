@@ -3,9 +3,9 @@
 
 
 
-XNOR::XNOR(GraphicsInfo* r_pGfxInfo, int r_FanOut, bool tf) :Gate(r_pGfxInfo, 2, r_FanOut)
+XNOR::XNOR(GraphicsInfo* r_pGfxInfo, int r_FanOut, bool tf,string s) :Gate(r_pGfxInfo, 2, r_FanOut)
 {
-	trandfa = tf;
+	trandfa = tf; label = s;
 }
 
 
@@ -21,7 +21,7 @@ void XNOR::Operate()
 // Draws 2-input AND gate
 void XNOR::Draw(UI* pUI)
 {		//Call output class and pass gate drawing info to it.
-		pUI->DrawXNOR(*m_pGfxInfo, trandfa);	
+		pUI->DrawXNOR(*m_pGfxInfo, trandfa,label);	
 }
 
 //returns status of outputpin
@@ -43,5 +43,5 @@ void XNOR::setInputPinStatus(int n, STATUS s)
 	m_InputPins[n - 1].setStatus(s);
 }
 void XNOR::save(ofstream& data) {
-	data << XNOR1 << "  " << m_pGfxInfo->PointsList[0].x << "  " << m_pGfxInfo->PointsList[0].y << "  " << m_pGfxInfo->PointsList[1].x << "  " << m_pGfxInfo->PointsList[1].y << endl;
+	data << XNOR1 << "  " << label << "  " << m_pGfxInfo->PointsList[0].x << "  " << m_pGfxInfo->PointsList[0].y << "  " << m_pGfxInfo->PointsList[1].x << "  " << m_pGfxInfo->PointsList[1].y << endl;
 }

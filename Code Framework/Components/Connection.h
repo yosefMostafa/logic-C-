@@ -15,11 +15,14 @@ class Connection :	public Component
 public:
 	//Connection(const GraphicsInfo &r_GfxInfo, Component *pS=NULL,Component *pD=NULL, int Pin=0);
 	//Connection(GraphicsInfo *r_GfxInfo, OutputPin *pSrcPin, InputPin *pDstPin);
-	Connection(GraphicsInfo* r_GfxInfo,bool trfa);
+	Connection(GraphicsInfo* r_GfxInfo,bool trfa,string s);
 	virtual void Operate() ;	//Calculates the output according to the inputs
 	virtual void Draw(UI* );//for each component to Draw itself
 	virtual bool selected(int x, int y);
 	virtual void save(ofstream &data);
+	virtual void settrandfa(bool s);
+	virtual void setlabel(string s);
+	virtual bool gettrandfa();
 	void setSourcePin(OutputPin *pSrcPin);
 	void setDestPin(InputPin *pDstPin);
 	OutputPin* getSourcePin();

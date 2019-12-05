@@ -31,6 +31,8 @@ public:
 	void save();
 	void load();
 	void selectd();
+	void edit();
+	void uselect();
 	
 	void UpdateInterface();	//Redraws all the drawing window
 

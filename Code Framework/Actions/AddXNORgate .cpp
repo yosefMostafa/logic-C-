@@ -35,7 +35,7 @@ void AddXNORgate::Execute()
 	pGInfo->PointsList[0].y = Cy - gateHeight / 2;
 	pGInfo->PointsList[1].x = Cx + gateWidth / 2;
 	pGInfo->PointsList[1].y = Cy + gateHeight / 2;
-	XNOR* pA = new XNOR(pGInfo, AND2_FANOUT, true);
+	XNOR* pA = new XNOR(pGInfo, AND2_FANOUT, true,"XNOR");
 	pManager->AddComponent(pA);
 }
 

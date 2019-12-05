@@ -99,13 +99,13 @@
     <ClInclude Include="Components\InputPin.h" />
     <ClInclude Include="Components\NAND.h" />
     <ClInclude Include="Components\NOR.h" />
+    <ClInclude Include="Components\OR2.h" />
     <ClInclude Include="Components\OutputPin.h" />
     <ClInclude Include="Components\Pin.h" />
     <ClInclude Include="Components\XNOR.h" />
     <ClInclude Include="Components\XOR.h" />
     <ClInclude Include="Defs.H" />
     <ClInclude Include="ADDORgate2.h" />
-    <ClInclude Include="OR2.h" />
     <ClInclude Include="UI\UI.h" />
   </ItemGroup>
   <ItemGroup>
@@ -161,13 +161,13 @@
     <ClCompile Include="Components\InputPin.cpp" />
     <ClCompile Include="Components\NAND.cpp" />
     <ClCompile Include="Components\NOR.cpp" />
+    <ClCompile Include="Components\OR2.cpp" />
     <ClCompile Include="Components\OutputPin.cpp" />
     <ClCompile Include="Components\Pin.cpp" />
     <ClCompile Include="Components\XNOR.cpp" />
     <ClCompile Include="Components\XOR.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ADDORgate2.cpp" />
-    <ClCompile Include="OR2.cpp" />
     <ClCompile Include="UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>

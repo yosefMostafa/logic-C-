@@ -6,8 +6,14 @@
 	//SrcPin = pSrcPin;
 	//DstPin = pDstPin;
 //}
-Connection::Connection(GraphicsInfo* r_GfxInfo, bool trfa) :Component(r_GfxInfo) {
-	trandfa = trfa;
+Connection::Connection(GraphicsInfo* r_GfxInfo, bool trfa,string s) :Component(r_GfxInfo) {
+	trandfa = trfa; label=s;
+}
+void Connection::settrandfa(bool s) {
+	trandfa = s;
+}
+void Connection::setlabel(string s) {
+	label = s;
 }
 void Connection::setSourcePin(OutputPin *pSrcPin)
 {	SrcPin = pSrcPin;	}
@@ -33,7 +39,7 @@ void Connection::Operate()
 void Connection::Draw(UI* pUI)
 {
 
-	pUI->DrawConnection(*m_pGfxInfo,trandfa);
+	pUI->DrawConnection(*m_pGfxInfo,trandfa,label);
 }
 
 int Connection::GetOutPinStatus()	//returns status of outputpin if LED, return -1
@@ -64,5 +70,8 @@ bool Connection::selected(int x, int y) {
 }
 
 void Connection::save(ofstream &data) {
-	data << LINE << "  " << m_pGfxInfo->PointsList[0].x << "  " << m_pGfxInfo->PointsList[0].y << "  " << m_pGfxInfo->PointsList[1].x << "  " << m_pGfxInfo->PointsList[1].y << endl;
+	data << LINE << "  " << label << "  " << m_pGfxInfo->PointsList[0].x << "  " << m_pGfxInfo->PointsList[0].y << "  " << m_pGfxInfo->PointsList[1].x << "  " << m_pGfxInfo->PointsList[1].y << endl;
 };
+bool Connection::gettrandfa() {
+	return trandfa;
+}

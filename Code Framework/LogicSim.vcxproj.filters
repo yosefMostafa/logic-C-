@@ -108,15 +108,11 @@
     <ClInclude Include="Actions\AddANDgate2.h">
       <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="UI\UI.h">
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="ADDORgate2.h">
       <Filter>Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="OR2.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Actions\addconc.h">
       <Filter>Actions</Filter>
@@ -143,6 +139,10 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="Components\XNOR.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationManager.h" />
+    <ClInclude Include="Components\OR2.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -287,9 +287,6 @@
     <ClCompile Include="ADDORgate2.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="OR2.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="Actions\addconc.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
@@ -315,6 +312,9 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="Components\XNOR.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\OR2.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>

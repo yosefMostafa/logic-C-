@@ -3,9 +3,9 @@
 
 
 
-AND2::AND2(GraphicsInfo *r_pGfxInfo, int r_FanOut,bool tf):Gate(r_pGfxInfo,2, r_FanOut)
+AND2::AND2(GraphicsInfo *r_pGfxInfo, int r_FanOut,bool tf,string s):Gate(r_pGfxInfo,2, r_FanOut)
 {
-	trandfa = tf;
+	trandfa = tf; label = s;
 }
 
 
@@ -22,7 +22,7 @@ void AND2::Operate()
 void AND2::Draw(UI* pUI)
 {
 		//Call output class and pass gate drawing info to it.
-		pUI->DrawAND2(*m_pGfxInfo,trandfa,"And");
+		pUI->DrawAND2(*m_pGfxInfo,trandfa,label);
 	
 }
 
@@ -46,5 +46,5 @@ void AND2::setInputPinStatus(int n, STATUS s)
 }
 void AND2::save(ofstream &data) {
 	
-	data << AND << "  " << m_pGfxInfo->PointsList[0].x << "  " << m_pGfxInfo->PointsList[0].y <<"  "<< m_pGfxInfo->PointsList[1].x << "  " << m_pGfxInfo->PointsList[1].y << endl;
+	data << AND << "  " <<label<<"  "<< m_pGfxInfo->PointsList[0].x << "  " << m_pGfxInfo->PointsList[0].y <<"  "<< m_pGfxInfo->PointsList[1].x << "  " << m_pGfxInfo->PointsList[1].y << endl;
 }

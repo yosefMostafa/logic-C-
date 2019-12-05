@@ -24,6 +24,9 @@ public:
 	Gate(GraphicsInfo* pGfxInfo, int r_Inputs, int r_FanOut);
 	bool selected(int x, int y);
 	virtual void save(ofstream &data);
+	virtual void settrandfa(bool s);
+	virtual bool gettrandfa();
+	virtual void setlabel(string s);
 
 };
 

@@ -55,7 +55,9 @@ class UI
 		ITM_REDO,
 		ITM_SAVE,
 		ITM_LOAD,
+		ITM_EDIT,
 		ITM_SM,
+		ITM_UNSELECT,
 		ITM_EXIT,		//Exit item
 		
 		//TODO: Add more items names here
@@ -64,18 +66,6 @@ class UI
 	
 	};
 
-
-	enum SimMenuItem //The items of the simulation menu (you should add more items)
-	{
-		//Note: Items are ordered here as they appear in menu
-		ITM_SIM,	//Simulate menu item
-		ITM_TRUTH,	//Truth table menu item
-	
-		//TODO:Add more items names here
-	
-		ITM_SIM_CNT		//no. of simulation menu items ==> This should be the last line in this enum
-	
-	};
 
 
 
@@ -111,10 +101,11 @@ public:
 	int getGateHeight() const;	
 	// Input Functions  ---------------------------
 	void GetPointClicked(int &, int &);	//Get coordinate where user clicks
-	string GetSrting();		//Returns a string entered by the user
+	void GetString(string& userInput);		//Returns a string entered by the user
 	void drawRectangle(int x,int y,int x1,int x2);
 	void drawline(int x, int y, int x1, int x2);
 	void drawstring(int x, int y,string f);
+	void WaitKeyPress(char& cKey);
 
 
 	ActionType GetUserAction() ; //Reads the user click and maps it to an action
@@ -134,15 +125,15 @@ public:
 		
 	// Draws 2-input AND gate
 	void DrawAND2(const GraphicsInfo &r_GfxInfo, bool selected ,string f) const;
-	void DrawNAND2(const GraphicsInfo& r_GfxInfo, bool selected) const;
-	void DrawOR2(const GraphicsInfo& r_GfxInfo, bool selected) const;
-	void DrawNOR(const GraphicsInfo& r_GfxInfo, bool selected) const;
-	void DrawXOR(const GraphicsInfo& r_GfxInfo, bool selected) const;
-	void DrawXNOR(const GraphicsInfo& r_GfxInfo, bool selected) const;
+	void DrawNAND2(const GraphicsInfo& r_GfxInfo, bool selected, string f) const;
+	void DrawOR2(const GraphicsInfo& r_GfxInfo, bool selected, string f) const;
+	void DrawNOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const;
+	void DrawXOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const;
+	void DrawXNOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const;
 	///TODO: Make similar functions for drawing all other gates, switch, and LED, .. etc
 
 	// Draws Connection
-	void DrawConnection(const GraphicsInfo& r_GfxInfo, bool selected) ;
+	void DrawConnection(const GraphicsInfo& r_GfxInfo, bool selected,string f) ;
 	
 	void PrintMsg(string msg) const;	//Print a message on Status bar
 

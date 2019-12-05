@@ -3,9 +3,9 @@
 
 
 
-NOR::NOR(GraphicsInfo* r_pGfxInfo, int r_FanOut, bool tf) :Gate(r_pGfxInfo, 2, r_FanOut)
+NOR::NOR(GraphicsInfo* r_pGfxInfo, int r_FanOut, bool tf,string s) :Gate(r_pGfxInfo, 2, r_FanOut)
 {
-	trandfa = tf;
+	trandfa = tf; label = s;
 }
 
 
@@ -22,7 +22,7 @@ void NOR::Operate()
 void NOR::Draw(UI* pUI)
 {
 		//Call output class and pass gate drawing info to it.
-		pUI->DrawNOR(*m_pGfxInfo, trandfa);
+	pUI->DrawNOR(*m_pGfxInfo, trandfa, label);
 }
 
 //returns status of outputpin
@@ -44,5 +44,5 @@ void NOR::setInputPinStatus(int n, STATUS s)
 	m_InputPins[n - 1].setStatus(s);
 }
 void NOR::save(ofstream& data) {
-	data << NOR1 << "  " << m_pGfxInfo->PointsList[0].x << "  " << m_pGfxInfo->PointsList[0].y << "  " << m_pGfxInfo->PointsList[1].x << "  " << m_pGfxInfo->PointsList[1].y << endl;
+	data << NOR1 << "  " << label << "  " << m_pGfxInfo->PointsList[0].x << "  " << m_pGfxInfo->PointsList[0].y << "  " << m_pGfxInfo->PointsList[1].x << "  " << m_pGfxInfo->PointsList[1].y << endl;
 }

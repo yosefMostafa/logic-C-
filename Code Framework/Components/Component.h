@@ -12,6 +12,8 @@ private:
 	string m_Label;
 protected:
 	GraphicsInfo *m_pGfxInfo;	//The parameters required to draw a component
+	bool trandfa;
+	string label;
 public:
 	enum gate {
 		AND,
@@ -23,8 +25,10 @@ public:
 		NOR1,
 		LEBGHT
 	};
-	bool trandfa;
 	Component(GraphicsInfo *r_GfxInfo);
+	virtual void settrandfa(bool s)=0;
+	virtual bool gettrandfa() = 0;
+	virtual void setlabel(string s) = 0;
 	virtual void Operate() = 0;	//Calculates the output according to the inputs
 	virtual void Draw(UI* ) = 0;	//for each component to Draw itself
 	virtual bool selected(int x,int y) = 0;

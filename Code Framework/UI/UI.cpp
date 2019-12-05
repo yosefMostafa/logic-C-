@@ -42,7 +42,7 @@ void UI::GetPointClicked(int &x, int &y)
 	pWind->WaitMouseClick(x, y);	//Wait for mouse click
 }
 
-string UI::GetSrting()
+void UI::GetString(string &userInput)
 {
 	//Reads a complete string from the user until the user presses "ENTER".
 	//If the user presses "ESCAPE". This function should return an empty string.
@@ -50,20 +50,21 @@ string UI::GetSrting()
 	//User should see what he is typing at the status bar
 
 
-	string userInput;
 	char Key;
 	while(1)
 	{
 		pWind->WaitKeyPress(Key);
-
+		if (Key == 13) {
+			break;
+		}
 		switch(Key)
 		{
 		case 27: //ESCAPE key is pressed
 			PrintMsg("");
-			return ""; //returns nothing as user has cancelled the input
+			break; //returns nothing as user has cancelled the input
 		
 		case 13:		//ENTER key is pressed
-			return userInput;
+			break;
 		
 		case 8:		//BackSpace is pressed
 			if(userInput.size() > 0)
@@ -122,6 +123,8 @@ ActionType UI::GetUserAction()
 			case ITM_REDO:return REDO;
 			case ITM_SAVE:return SAVE;
 			case ITM_LOAD:return LOAD;
+			case ITM_EDIT:return EDIT_Label;
+			case ITM_UNSELECT:return USELECT;
 			case ITM_pen:return ADD_CONNECTION;	
 			case ITM_EXIT: return EXIT;	
 			
@@ -241,6 +244,9 @@ void UI::CreateDesignToolBar()
 	MenuItemImages[ITM_SAVE] = "images\\Menu\\Save.jpg";
 	MenuItemImages[ITM_LOAD] = "images\\Menu\\Load.jpg";
 	MenuItemImages[ITM_SM] = "images\\Menu\\Load.jpg";
+	MenuItemImages[ITM_EDIT] = "images\\Menu\\Load.jpg";
+	MenuItemImages[ITM_UNSELECT] = "images\\Menu\\load.jpg";
+
 
 
 	//TODO: Prepare image for each menu item and add it to the list
@@ -253,13 +259,13 @@ void UI::CreateDesignToolBar()
 	//Draw a line under the toolbar
 	pWind->SetPen(BLACK, 20);
 	pWind->SetFont(15,5, MODERN);
-	string gatelabel[14]= { "AND","NAND","OR","NOR","XOR","XNOR","PEN","Delete","Undo","Redo","Save","Load","Simulation","EXIT" };
-	for (int i = 0; i < 14; i++) {
-		if (i != 12) {
-			pWind->DrawString(i * ToolItemWidth + 25, 80, gatelabel[i]);
+	string gatelabel[16]= { "AND","NAND","OR","NOR","XOR","XNOR","PEN","Delete","Undo","Redo","Save","Load","Edit label","Simulation","unselect","EXIT" };
+	for (int i = 0; i < 16; i++) {
+		if (i==12||i==13) {
+			pWind->DrawString(i * ToolItemWidth +10, 80, gatelabel[i]);
 		}
-		else {
-			pWind->DrawString(i * ToolItemWidth , 80, gatelabel[i]);
+		else  {
+			pWind->DrawString(i * ToolItemWidth +25, 80, gatelabel[i]);
 		}
 	}
 	pWind->SetPen(RED,3);
@@ -275,7 +281,7 @@ void UI::CreateSimulationToolBar()
 	pWind->SetPen(WHITE, 1);
 	pWind->DrawRectangle(0, 0, width, ToolBarHeight+14);
 	string STbarItemImages[ITM_STN_CNT];
-	STbarItemImages[IIM_TRUTHTABLE] = "images\\Menu\\Load.jpg";
+	STbarItemImages[IIM_TRUTHTABLE] = "images\\Menu\\TTL.jpg";
 	STbarItemImages[ITM_DM] = "images\\Menu\\Load.jpg";
 	STbarItemImages[EXIT1] = "images\\Menu\\Menu_Exit.jpg";
 	for (int i = 0; i < ITM_STN_CNT; i++) {
@@ -314,7 +320,7 @@ void UI::DrawAND2(const GraphicsInfo &r_GfxInfo, bool selected,string f) const
 	pWind->SetFont(20, 5, MODERN);
 	pWind->DrawString((r_GfxInfo.PointsList[0].x+GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y+GATE_Height + 5, f);
 }
-void UI::DrawNAND2(const GraphicsInfo& r_GfxInfo, bool selected) const
+void UI::DrawNAND2(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 {
 	string GateImage;
 	if (selected) {//use image in the highlighted case
@@ -327,8 +333,11 @@ void UI::DrawNAND2(const GraphicsInfo& r_GfxInfo, bool selected) const
 	//Draw AND2 Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
+	pWind->SetPen(BLACK, 20);
+	pWind->SetFont(20, 5, MODERN);
+	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
 }
-void UI::DrawOR2(const GraphicsInfo& r_GfxInfo, bool selected) const
+void UI::DrawOR2(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 {
 	string GateImage;
 	if (selected)	//use image in the highlighted case
@@ -339,8 +348,11 @@ void UI::DrawOR2(const GraphicsInfo& r_GfxInfo, bool selected) const
 	//Draw AND2 Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
+	pWind->SetPen(BLACK, 20);
+	pWind->SetFont(20, 5, MODERN);
+	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
 }
-void UI::DrawXOR(const GraphicsInfo& r_GfxInfo, bool selected) const
+void UI::DrawXOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 {
 	string GateImage;
 	if (selected)	//use image in the highlighted case
@@ -351,8 +363,11 @@ void UI::DrawXOR(const GraphicsInfo& r_GfxInfo, bool selected) const
 	//Draw AND2 Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
+	pWind->SetPen(BLACK, 20);
+	pWind->SetFont(20, 5, MODERN);
+	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
 }
-void UI::DrawXNOR(const GraphicsInfo& r_GfxInfo, bool selected) const
+void UI::DrawXNOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 {
 	string GateImage;
 	if (selected)	//use image in the highlighted case
@@ -363,8 +378,11 @@ void UI::DrawXNOR(const GraphicsInfo& r_GfxInfo, bool selected) const
 	//Draw AND2 Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
+	pWind->SetPen(BLACK, 20);
+	pWind->SetFont(20, 5, MODERN);
+	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
 }
-void UI::DrawNOR(const GraphicsInfo& r_GfxInfo, bool selected) const
+void UI::DrawNOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 {
 	string GateImage;
 	if (selected)	//use image in the highlighted case
@@ -375,12 +393,15 @@ void UI::DrawNOR(const GraphicsInfo& r_GfxInfo, bool selected) const
 	//Draw AND2 Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
+	pWind->SetPen(BLACK, 20);
+	pWind->SetFont(20, 5, MODERN);
+	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
 }
 
 //TODO: Add similar functions to draw all components
 
 
-void UI::DrawConnection(const GraphicsInfo& r_GfxInfo, bool selected) 
+void UI::DrawConnection(const GraphicsInfo& r_GfxInfo, bool selected, string f)
 {
 	
 	if (selected) {
@@ -392,6 +413,9 @@ void UI::DrawConnection(const GraphicsInfo& r_GfxInfo, bool selected)
 		pWind->DrawLine(r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[0].y);
 		pWind->DrawLine(r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[0].y, r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[1].y);//TODO: Add code to draw connection
 	}
+	pWind->SetPen(BLACK, 20);
+	pWind->SetFont(20, 5, MODERN);
+	pWind->DrawString(((r_GfxInfo.PointsList[0].x + r_GfxInfo.PointsList[1].x) / 2), r_GfxInfo.PointsList[0].y-25, f);
 }
 
 
@@ -404,7 +428,7 @@ void UI::drawRectangle(int x, int y, int x1, int y1) {
 	pWind->DrawRectangle(x, y,x1, y1);
 }
 void UI::drawline(int x, int y, int x1, int y1) {
-	pWind->SetPen(BLACK, 1);
+	pWind->SetPen(GREY, 1);
 	pWind->DrawLine(x, y, x1, y1);
 }
 int UI::getlastclickx() {
@@ -415,4 +439,7 @@ int UI::getlastclicky() {
 }
 void UI::drawstring(int x, int y, string f) {
 	pWind->DrawString(x, y, f);
+}
+void UI::WaitKeyPress(char& key) {
+	pWind->WaitKeyPress(key);
 }

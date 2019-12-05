@@ -13,7 +13,7 @@ using namespace std;
 class AND2:public Gate
 {
 public:
-	AND2(GraphicsInfo *r_pGfxInfo, int r_FanOut,bool tf);
+	AND2(GraphicsInfo *r_pGfxInfo, int r_FanOut,bool tf,string s);
 	virtual void Operate();	//Calculates the output of the AND gate
 	virtual void Draw(UI* );
 	virtual void save(ofstream &data);	//Draws 2-input gate

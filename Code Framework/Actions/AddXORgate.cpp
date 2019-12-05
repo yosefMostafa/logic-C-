@@ -34,7 +34,7 @@ void AddXORgate::Execute()
 	pGInfo->PointsList[0].y = Cy - gateHeight / 2;
 	pGInfo->PointsList[1].x = Cx + gateWidth / 2;
 	pGInfo->PointsList[1].y = Cy + gateHeight / 2;
-	XOR* pA = new XOR(pGInfo, AND2_FANOUT, true);
+	XOR* pA = new XOR(pGInfo, AND2_FANOUT, true,"XOR");
 	pManager->AddComponent(pA);
 }
 

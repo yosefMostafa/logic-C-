@@ -26,3 +26,12 @@ bool Gate::selected(int x, int y) {
 void Gate::save(ofstream &data) {
 
 }
+void Gate::settrandfa(bool s) {
+	trandfa = s;
+}
+void Gate::setlabel(string s) {
+	label = s;
+}
+bool Gate::gettrandfa() {
+	return trandfa;
+}

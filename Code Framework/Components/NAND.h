@@ -12,7 +12,7 @@ using namespace std;
 class NAND2 :public Gate
 {
 public:
-	NAND2(GraphicsInfo* r_pGfxInfo, int r_FanOut, bool tf);
+	NAND2(GraphicsInfo* r_pGfxInfo, int r_FanOut, bool tf,string s);
 	virtual void Operate();	//Calculates the output of the AND gate
 	virtual void Draw(UI*);	//Draws 2-input gate
 	virtual void save(ofstream& data);

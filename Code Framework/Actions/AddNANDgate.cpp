@@ -35,7 +35,7 @@ void AddNANDgate2::Execute()
 	pGInfo->PointsList[0].y = Cy - gateHeight / 2;
 	pGInfo->PointsList[1].x = Cx + gateWidth / 2;
 	pGInfo->PointsList[1].y = Cy + gateHeight / 2;
-	NAND2* pA = new NAND2(pGInfo, AND2_FANOUT, true);
+	NAND2* pA = new NAND2(pGInfo, AND2_FANOUT, true,"NAND");
 	pManager->AddComponent(pA);
 }
 
