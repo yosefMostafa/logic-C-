@@ -23,6 +23,8 @@ public:
 		LINE,
 		XNOR1,
 		NOR1,
+		LED,
+		Switch1,
 		LEBGHT
 	};
 	Component(GraphicsInfo *r_GfxInfo);

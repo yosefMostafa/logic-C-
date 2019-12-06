@@ -59,7 +59,12 @@ class UI
 		ITM_SM,
 		ITM_UNSELECT,
 		ITM_EXIT,		//Exit item
-		
+		ITM_SWITCH,
+		ITM_LED,
+		ITM_COPY,
+		ITM_CUT,
+		ITM_PASTE,
+		ITM_MOVE,
 		//TODO: Add more items names here
 	
 		ITM_DSN_CNT		//no. of design menu items ==> This should be the last line in this enum
@@ -130,6 +135,8 @@ public:
 	void DrawNOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const;
 	void DrawXOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const;
 	void DrawXNOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const;
+	void Drawled(const GraphicsInfo& r_GfxInfo, bool selected, string f) const;
+	void Drawswitch(const GraphicsInfo& r_GfxInfo, bool selected, string f) const;
 	///TODO: Make similar functions for drawing all other gates, switch, and LED, .. etc
 
 	// Draws Connection

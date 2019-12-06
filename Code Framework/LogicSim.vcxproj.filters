@@ -145,6 +145,18 @@
     <ClInclude Include="Components\OR2.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="Actions\Addled.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Led.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\Addswitch.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Switch.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\AND2.cpp">
@@ -315,6 +327,18 @@
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="Components\OR2.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\Addled.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Led.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\Addswitch.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Switch.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>

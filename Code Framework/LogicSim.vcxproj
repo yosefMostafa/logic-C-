@@ -65,8 +65,10 @@
     <ClInclude Include="Actions\Action.h" />
     <ClInclude Include="Actions\AddANDgate2.h" />
     <ClInclude Include="Actions\addconc.h" />
+    <ClInclude Include="Actions\Addled.h" />
     <ClInclude Include="Actions\AddNANDgate.h" />
     <ClInclude Include="Actions\AddNORgate.h" />
+    <ClInclude Include="Actions\Addswitch.h" />
     <ClInclude Include="Actions\AddXNORgate.h" />
     <ClInclude Include="Actions\AddXORgate.h" />
     <ClInclude Include="ApplicationManager.h" />
@@ -97,11 +99,13 @@
     <ClInclude Include="Components\Connection.h" />
     <ClInclude Include="Components\Gate.h" />
     <ClInclude Include="Components\InputPin.h" />
+    <ClInclude Include="Components\Led.h" />
     <ClInclude Include="Components\NAND.h" />
     <ClInclude Include="Components\NOR.h" />
     <ClInclude Include="Components\OR2.h" />
     <ClInclude Include="Components\OutputPin.h" />
     <ClInclude Include="Components\Pin.h" />
+    <ClInclude Include="Components\Switch.h" />
     <ClInclude Include="Components\XNOR.h" />
     <ClInclude Include="Components\XOR.h" />
     <ClInclude Include="Defs.H" />
@@ -111,8 +115,10 @@
   <ItemGroup>
     <ClCompile Include="Actions\AddANDgate2.cpp" />
     <ClCompile Include="Actions\addconc.cpp" />
+    <ClCompile Include="Actions\Addled.cpp" />
     <ClCompile Include="Actions\AddNANDgate.cpp" />
     <ClCompile Include="Actions\AddNORgate.cpp" />
+    <ClCompile Include="Actions\Addswitch.cpp" />
     <ClCompile Include="Actions\AddXNORgate .cpp" />
     <ClCompile Include="Actions\AddXORgate.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
@@ -159,11 +165,13 @@
     <ClCompile Include="Components\Connection.cpp" />
     <ClCompile Include="Components\Gate.cpp" />
     <ClCompile Include="Components\InputPin.cpp" />
+    <ClCompile Include="Components\Led.cpp" />
     <ClCompile Include="Components\NAND.cpp" />
     <ClCompile Include="Components\NOR.cpp" />
     <ClCompile Include="Components\OR2.cpp" />
     <ClCompile Include="Components\OutputPin.cpp" />
     <ClCompile Include="Components\Pin.cpp" />
+    <ClCompile Include="Components\Switch.cpp" />
     <ClCompile Include="Components\XNOR.cpp" />
     <ClCompile Include="Components\XOR.cpp" />
     <ClCompile Include="main.cpp" />

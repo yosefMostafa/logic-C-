@@ -1,5 +1,7 @@
 #include "ApplicationManager.h"
 #include "Actions\AddANDgate2.h"
+#include "Actions\Addled.h"
+#include "Actions\Addswitch.h"
 #include "Actions\AddXORgate.h"
 #include "Actions\AddNANDgate.h"
 #include "Actions\AddXNORgate.h"
@@ -66,6 +68,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case ADD_XNOR_GATE_2:
 			pAct = new AddXNORgate(this);
 			break;
+		case ADD_LED:
+			pAct = new Addled(this);
+			break;
+		case ADD_Switch:
+			pAct=new Addswitch(this);
+				break;
 		case DEL:
 			delete1();
 			break;
@@ -201,6 +209,8 @@ void ApplicationManager::load() {
 		LINE,
 		XNOR1,
 		NOR1,
+		LED,
+		Switch1,
 		LEBGHT
 	};
 	int x, y, x1, y1;
@@ -235,6 +245,13 @@ void ApplicationManager::load() {
 			case NOR1:
 				pA = new NOR(pGInfo, AND2_FANOUT, true, label);
 				break;
+			case LED:
+				pA = new Led(pGInfo, AND2_FANOUT, true, label);
+				break;
+			case Switch1:
+				pA = new Switch(pGInfo, AND2_FANOUT, true, label);
+				break;
+
 		}
 		if (pA) {
 			AddComponent(pA);
@@ -258,6 +275,7 @@ void ApplicationManager::edit() {
 			CompList[i]->setlabel(s);
 		}
 	}
+	pUI->ClearStatusBar();
 }
 ///////////////////////////////////////////////////////////////////
 void ApplicationManager::uselect() {

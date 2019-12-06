@@ -100,12 +100,15 @@ ActionType UI::GetUserAction()
 	if(AppMode == DESIGN )	//application is in design mode
 	{
 		//[1] If user clicks on the Toolbar
-		if ( y >= 0 && y < ToolBarHeight)
+		if ( (y >= 0 && y < ToolBarHeight)||(x>width- ToolItemWidth&&y>(ToolBarHeight)&& y < (height- StatusBarHeight)))
 		{	
 			//Check whick Menu item was clicked
 			//==> This assumes that menu items are lined up horizontally <==
 			int ClickedItemOrder = (x / ToolItemWidth);
 			//Divide x coord of the point clicked by the menu item width (int division)
+				if (ClickedItemOrder == 15 && y > ToolBarHeight + 15) {
+					ClickedItemOrder = 15+((y-20)/ ToolBarHeight);
+				}
 			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
 
 			switch (ClickedItemOrder)
@@ -126,6 +129,12 @@ ActionType UI::GetUserAction()
 			case ITM_EDIT:return EDIT_Label;
 			case ITM_UNSELECT:return USELECT;
 			case ITM_pen:return ADD_CONNECTION;	
+			case ITM_SWITCH:return ADD_Switch;
+			case ITM_LED:return ADD_LED;
+			case ITM_COPY: return COPY;
+			case ITM_CUT: return CUT;
+			case ITM_PASTE: return PASTE;
+			case ITM_MOVE: return MOVE;
 			case ITM_EXIT: return EXIT;	
 			
 			default: return DSN_TOOL;	//A click on empty place in desgin toolbar
@@ -232,7 +241,7 @@ void UI::CreateDesignToolBar()
 	string MenuItemImages[ITM_DSN_CNT];
 	MenuItemImages[ITM_AND2] = "images\\Gates\\Gate_AND2.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
-	MenuItemImages[ITM_pen] = "images\\Menu\\pen.jpg";
+	MenuItemImages[ITM_pen] = "images\\Menu\\WIRE.jpg";
 	MenuItemImages[ITM_OR2] = "images\\Menu\\OR.jpg";
 	MenuItemImages[ITM_XOR] = "images\\Gates\\XOR.jpg";
 	MenuItemImages[ITM_NOR2] = "images\\Gates\\NOR.jpg";
@@ -243,35 +252,51 @@ void UI::CreateDesignToolBar()
 	MenuItemImages[ITM_REDO] = "images\\Menu\\Redo.jpg";
 	MenuItemImages[ITM_SAVE] = "images\\Menu\\Save.jpg";
 	MenuItemImages[ITM_LOAD] = "images\\Menu\\Load.jpg";
-	MenuItemImages[ITM_SM] = "images\\Menu\\Load.jpg";
-	MenuItemImages[ITM_EDIT] = "images\\Menu\\Load.jpg";
-	MenuItemImages[ITM_UNSELECT] = "images\\Menu\\load.jpg";
+	MenuItemImages[ITM_SM] = "images\\Menu\\SM.jpg";
+	MenuItemImages[ITM_EDIT] = "images\\Menu\\pen.jpg";
+	MenuItemImages[ITM_UNSELECT] = "images\\Menu\\unselect.jpg";
+	MenuItemImages[ITM_SWITCH] = "images\\Menu\\one.jpg";
+	MenuItemImages[ITM_LED] = "images\\Menu\\LAMP.jpg";
+	MenuItemImages[ITM_COPY] = "images\\Menu\\copy.jpg";
+	MenuItemImages[ITM_CUT] = "images\\Menu\\cut.jpg";
+	MenuItemImages[ITM_PASTE] = "images\\Menu\\paste.jpg";
+	MenuItemImages[ITM_MOVE] = "images\\Menu\\move.jpg";
 
 
 
 	//TODO: Prepare image for each menu item and add it to the list
 
 	//Draw menu item one image at a time
+	int j = 1;
 	for (int i = 0; i < ITM_DSN_CNT; i++) {
-		pWind->DrawImage(MenuItemImages[i], i * ToolItemWidth, 0, ToolItemWidth, ToolBarHeight);
+		if (i>= 16) {
+			pWind->DrawImage(MenuItemImages[i], width- (ToolItemWidth+14), (ToolBarHeight+15)*(j), ToolItemWidth, ToolBarHeight);
+			j++;
+		}
+		else {
+			pWind->DrawImage(MenuItemImages[i], i * ToolItemWidth, 0, ToolItemWidth, ToolBarHeight);
+		}
 	}
-
+	int n = 1;
 	//Draw a line under the toolbar
 	pWind->SetPen(BLACK, 20);
 	pWind->SetFont(15,5, MODERN);
-	string gatelabel[16]= { "AND","NAND","OR","NOR","XOR","XNOR","PEN","Delete","Undo","Redo","Save","Load","Edit label","Simulation","unselect","EXIT" };
-	for (int i = 0; i < 16; i++) {
+	string gatelabel[22]= { "AND","NAND","OR","NOR","XOR","XNOR","WIRE","Delete","Undo","Redo","Save","Load","Edit label","Simulation","unselect","EXIT","Switch","LED","Copy","Cut","Paste","Move" };
+	for (int i = 0; i < 22; i++) {
 		if (i==12||i==13) {
 			pWind->DrawString(i * ToolItemWidth +10, 80, gatelabel[i]);
 		}
-		else  {
+		else if(i>=16){
+			pWind->DrawString(width-(ToolItemWidth+12) ,65+ ToolItemWidth *(n), gatelabel[i]);
+			n++;
+		}else {
 			pWind->DrawString(i * ToolItemWidth +25, 80, gatelabel[i]);
 		}
 	}
 	pWind->SetPen(BLACK,3);
 	pWind->DrawLine(0, ToolBarHeight + 15, width, ToolBarHeight + 15);
 	pWind->SetPen(BLACK, 3);
-	pWind->DrawLine(width - 100, 95, width - 100, height - 50);
+	pWind->DrawLine(width - 95, 95, width - 95, height - 50);
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 //Draws the menu (toolbar) in the simulation mode
@@ -280,6 +305,7 @@ void UI::CreateSimulationToolBar()
 	AppMode = SIMULATION;	//Simulation Mode
 	pWind->SetPen(WHITE, 1);
 	pWind->DrawRectangle(0, 0, width, ToolBarHeight+14);
+	pWind->DrawRectangle(width -(ToolItemWidth+13), ToolBarHeight+13, width, height - StatusBarHeight);
 	string STbarItemImages[ITM_STN_CNT];
 	STbarItemImages[IIM_TRUTHTABLE] = "images\\Menu\\TTL.jpg";
 	STbarItemImages[ITM_DM] = "images\\Menu\\Load.jpg";
@@ -397,7 +423,36 @@ void UI::DrawNOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 	pWind->SetFont(15, 5, MODERN);
 	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
 }
+void UI::Drawled(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
+{
+	string GateImage;
+	if (selected)	//use image in the highlighted case
+		GateImage = "Images\\Gates\\ON_LAMP.jpg";
+	else
+		GateImage = "Images\\Gates\\ON_LAMP _Hi.jpg";
 
+	//Draw AND2 Gate at Gfx_Info (1st corner)
+	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
+	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
+	pWind->SetPen(BLACK, 20);
+	pWind->SetFont(15, 5, MODERN);
+	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
+}
+void UI::Drawswitch(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
+{
+	string GateImage;
+	if (selected)	//use image in the highlighted case
+		GateImage = "Images\\Gates\\one.jpg";
+	else
+		GateImage = "Images\\Gates\\zero.jpg";
+
+	//Draw AND2 Gate at Gfx_Info (1st corner)
+	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
+	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
+	pWind->SetPen(BLACK, 20);
+	pWind->SetFont(15, 5, MODERN);
+	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
+}
 //TODO: Add similar functions to draw all components
 
 
