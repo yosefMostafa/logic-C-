@@ -61,6 +61,7 @@ class UI
 		ITM_EXIT,		//Exit item
 		ITM_SWITCH,
 		ITM_LED,
+		ITM_NOT,
 		ITM_COPY,
 		ITM_CUT,
 		ITM_PASTE,
@@ -76,7 +77,7 @@ class UI
 
 	MODE AppMode;		//Application Mode (design or simulation)
 	
-	static const int	width = 1280, height = 720,	//Window width and height
+	static const int	width = 1280, height = 800,	//Window width and height
 						wx = 15 , wy = 15,			//Window starting coordinates
 						StatusBarHeight = 50,	//Status Bar Height
 						ToolBarHeight = 80,		//Tool Bar Height (distance from top of window to bottom line of toolbar)
@@ -137,6 +138,7 @@ public:
 	void DrawXNOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const;
 	void Drawled(const GraphicsInfo& r_GfxInfo, bool selected, string f) const;
 	void Drawswitch(const GraphicsInfo& r_GfxInfo, bool selected, string f) const;
+	void DrawNOT(const GraphicsInfo& r_GfxInfo, bool selected, string f) const;
 	///TODO: Make similar functions for drawing all other gates, switch, and LED, .. etc
 
 	// Draws Connection

@@ -8,6 +8,7 @@
 #include "Actions\AddNORgate.h"
 #include "Actions\Addconc.h"
 #include "Actions\AddORgate2.h"
+#include "Actions\AddNOT.h"
 #include "Actions\Action.h"
 #include "Components\OR2.h" 
 #include "Components\XOR.h"
@@ -74,6 +75,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case ADD_Switch:
 			pAct=new Addswitch(this);
 				break;
+		case ADD_INV:
+			pAct = new AddNOT(this);
+			break;
 		case DEL:
 			delete1();
 			break;
@@ -106,13 +110,13 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 void ApplicationManager::UpdateInterface()
 {
-	int width = 1280; int height = 720;
+	int width = 1280; int height = 800;
 	pUI->drawRectangle(0, 96, width- 100, height - 50);
 	for (int i = 0; i < width - 100; i = i + 20) {
 		pUI->drawline(i, 95, i, height - 50);
 	}
 	for (int i = 0; i < height - 150; i = i + 20) {
-		pUI->drawline(0, i + 95, width - 100, i + 95);
+		pUI->drawline(0, i + 95, width - 95, i + 95);
 	}
 		for(int i=0; i<CompCount; i++)
 			CompList[i]->Draw(pUI);
@@ -211,6 +215,7 @@ void ApplicationManager::load() {
 		NOR1,
 		LED,
 		Switch1,
+		NOT1,
 		LEBGHT
 	};
 	int x, y, x1, y1;
@@ -251,7 +256,9 @@ void ApplicationManager::load() {
 			case Switch1:
 				pA = new Switch(pGInfo, AND2_FANOUT, true, label);
 				break;
-
+			case NOT1:
+				pA = new NOT(pGInfo, AND2_FANOUT, true, label);
+				break;
 		}
 		if (pA) {
 			AddComponent(pA);

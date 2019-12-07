@@ -157,6 +157,12 @@
     <ClInclude Include="Components\Switch.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="Actions\AddNOT.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\NOT.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\AND2.cpp">
@@ -339,6 +345,12 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="Components\Switch.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddNOT.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\NOT.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>

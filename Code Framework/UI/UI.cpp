@@ -107,7 +107,7 @@ ActionType UI::GetUserAction()
 			int ClickedItemOrder = (x / ToolItemWidth);
 			//Divide x coord of the point clicked by the menu item width (int division)
 				if (ClickedItemOrder == 15 && y > ToolBarHeight + 15) {
-					ClickedItemOrder = 15+((y-20)/ ToolBarHeight);
+					ClickedItemOrder = 15+(((y-95)/ ToolBarHeight)+1);
 				}
 			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
 
@@ -135,6 +135,7 @@ ActionType UI::GetUserAction()
 			case ITM_CUT: return CUT;
 			case ITM_PASTE: return PASTE;
 			case ITM_MOVE: return MOVE;
+			case ITM_NOT:return ADD_INV;
 			case ITM_EXIT: return EXIT;	
 			
 			default: return DSN_TOOL;	//A click on empty place in desgin toolbar
@@ -164,7 +165,7 @@ ActionType UI::GetUserAction()
 			{
 			case IIM_TRUTHTABLE: return TRUTH_TABLE;
 			case ITM_DM:CreateDesignToolBar();
-				break;
+				return DSN_TOOL;
 			case EXIT1:return EXIT;
 			default: return DSN_TOOL;	//A click on empty place in desgin toolbar
 			}
@@ -261,6 +262,7 @@ void UI::CreateDesignToolBar()
 	MenuItemImages[ITM_CUT] = "images\\Menu\\cut.jpg";
 	MenuItemImages[ITM_PASTE] = "images\\Menu\\paste.jpg";
 	MenuItemImages[ITM_MOVE] = "images\\Menu\\move.jpg";
+	MenuItemImages[ITM_NOT] = "images\\Menu\\NOT.jpg";
 
 
 
@@ -270,8 +272,14 @@ void UI::CreateDesignToolBar()
 	int j = 1;
 	for (int i = 0; i < ITM_DSN_CNT; i++) {
 		if (i>= 16) {
-			pWind->DrawImage(MenuItemImages[i], width- (ToolItemWidth+14), (ToolBarHeight+15)*(j), ToolItemWidth, ToolBarHeight);
-			j++;
+			if (i == 16) {
+				pWind->DrawImage(MenuItemImages[i], width - (ToolItemWidth + 14), (ToolBarHeight + 15) * (j), ToolItemWidth, ToolBarHeight);
+				j++;
+			}
+			else {
+				pWind->DrawImage(MenuItemImages[i], width - (ToolItemWidth + 14), (ToolBarHeight) * (j)+15, ToolItemWidth, ToolBarHeight);
+				j++;
+			}
 		}
 		else {
 			pWind->DrawImage(MenuItemImages[i], i * ToolItemWidth, 0, ToolItemWidth, ToolBarHeight);
@@ -281,13 +289,15 @@ void UI::CreateDesignToolBar()
 	//Draw a line under the toolbar
 	pWind->SetPen(BLACK, 20);
 	pWind->SetFont(15,5, MODERN);
-	string gatelabel[22]= { "AND","NAND","OR","NOR","XOR","XNOR","WIRE","Delete","Undo","Redo","Save","Load","Edit label","Simulation","unselect","EXIT","Switch","LED","Copy","Cut","Paste","Move" };
-	for (int i = 0; i < 22; i++) {
+	string gatelabel[23]= { "AND","NAND","OR","NOR","XOR","XNOR","WIRE","Delete","Undo","Redo","Save",
+		"Load","Edit label","Simulation","unselect",
+		"EXIT","Switch","LED","NOT","Copy","Cut","Paste","Move" };
+	for (int i = 0; i < 23; i++) {
 		if (i==12||i==13) {
 			pWind->DrawString(i * ToolItemWidth +10, 80, gatelabel[i]);
 		}
 		else if(i>=16){
-			pWind->DrawString(width-(ToolItemWidth+12) ,65+ ToolItemWidth *(n), gatelabel[i]);
+			pWind->DrawString(width-(ToolItemWidth+12) , 15+ToolItemWidth *(n), gatelabel[i]);
 			n++;
 		}else {
 			pWind->DrawString(i * ToolItemWidth +25, 80, gatelabel[i]);
@@ -445,6 +455,21 @@ void UI::Drawswitch(const GraphicsInfo& r_GfxInfo, bool selected, string f) cons
 		GateImage = "Images\\Gates\\one.jpg";
 	else
 		GateImage = "Images\\Gates\\zero.jpg";
+
+	//Draw AND2 Gate at Gfx_Info (1st corner)
+	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
+	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
+	pWind->SetPen(BLACK, 20);
+	pWind->SetFont(15, 5, MODERN);
+	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
+}
+void UI::DrawNOT(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
+{
+	string GateImage;
+	if (selected)	//use image in the highlighted case
+		GateImage = "Images\\Gates\\NOT.jpg";
+	else
+		GateImage = "Images\\Gates\\NOT_Hi.jpg";
 
 	//Draw AND2 Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info

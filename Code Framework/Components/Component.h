@@ -25,6 +25,7 @@ public:
 		NOR1,
 		LED,
 		Switch1,
+		NOT1,
 		LEBGHT
 	};
 	Component(GraphicsInfo *r_GfxInfo);
