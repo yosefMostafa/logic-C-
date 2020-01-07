@@ -34,8 +34,18 @@ void Addled::Execute()
 	pGInfo->PointsList[0].y = Cy - gateHeight / 2;
 	pGInfo->PointsList[1].x = Cx + gateWidth / 2;
 	pGInfo->PointsList[1].y = Cy + gateHeight / 2;
-	Led* pA = new Led(pGInfo, AND2_FANOUT, true, "Led");
-	pManager->AddComponent(pA);
+	if (pGInfo->PointsList[0].y > (pUI->getToolBarHeight()) + 15 &&
+		pGInfo->PointsList[1].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
+		pGInfo->PointsList[0].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
+		pGInfo->PointsList[1].y >(pUI->getToolBarHeight()) + 15 &&
+		pGInfo->PointsList[0].x < (pUI->getwidth()) - 100 && pGInfo->PointsList[1].x < (pUI->getwidth()) - 100) {
+		Led* pA = new Led(pGInfo, AND2_FANOUT, true, "Led");
+		pManager->AddComponent(pA);
+	}
+	else {
+		pUI->PrintMsg("Invalid place.Try again.");
+	}
+	
 }
 
 

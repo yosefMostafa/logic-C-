@@ -483,19 +483,18 @@ void UI::DrawNOT(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 
 void UI::DrawConnection(const GraphicsInfo& r_GfxInfo, bool selected, string f)
 {
-	
+
 	if (selected) {
 		pWind->SetPen(BLACK, 5);
-	}else{
+	}
+	else {
 		pWind->SetPen(RED, 5);
 	}
-	if (r_GfxInfo.PointsList[0].y > ToolBarHeight+15 && r_GfxInfo.PointsList[1].y < height-StatusBarHeight&& r_GfxInfo.PointsList[0].y < height - StatusBarHeight&& r_GfxInfo.PointsList[1].y > ToolBarHeight+15&& r_GfxInfo.PointsList[0].x < width-100&& r_GfxInfo.PointsList[1].x < width - 100) {
 		pWind->DrawLine(r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[0].y);
-		pWind->DrawLine(r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[0].y, r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[1].y);//TODO: Add code to draw connection
-	}
-	pWind->SetPen(BLACK, 20);
-	pWind->SetFont(15, 5, MODERN);
-	pWind->DrawString(((r_GfxInfo.PointsList[0].x + r_GfxInfo.PointsList[1].x) / 2), r_GfxInfo.PointsList[0].y-25, f);
+		pWind->DrawLine(r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[0].y, r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[1].y);//TODO: Add code to draw connection00
+		pWind->SetPen(BLACK, 20);
+		pWind->SetFont(15, 5, MODERN);
+		pWind->DrawString(((r_GfxInfo.PointsList[0].x + r_GfxInfo.PointsList[1].x) / 2), r_GfxInfo.PointsList[0].y - 25, f);
 }
 
 
@@ -524,3 +523,24 @@ void UI::WaitKeyPress(char& key) {
 	pWind->WaitKeyPress(key);
 }
 
+void UI::getmousecor(int& x, int& y) {
+	pWind->GetMouseCoord(x, y);
+}
+void UI::getmouseclick(int& x, int& y) {
+	pWind->GetMouseClick(x, y);
+}
+int UI::getToolBarHeight(){
+	return ToolBarHeight1;
+}
+int UI::getToolItemWidth() {
+	return ToolItemWidth1;
+}
+int UI::getheight() {
+	return height1;
+}
+int UI::getwidth() {
+	return width1;
+}
+int UI::getStatusBarHeight() {
+	return StatusBarHeight1;
+}

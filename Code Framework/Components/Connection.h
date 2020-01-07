@@ -22,7 +22,9 @@ public:
 	virtual void save(ofstream &data);
 	virtual void settrandfa(bool s);
 	virtual void setlabel(string s);
+	virtual void getlabel(string &s);
 	virtual bool gettrandfa();
+	virtual void setGInfo(GraphicsInfo* r_GfxInfo);
 	void setSourcePin(OutputPin *pSrcPin);
 	void setDestPin(InputPin *pDstPin);
 	OutputPin* getSourcePin();

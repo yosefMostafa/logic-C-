@@ -24,10 +24,17 @@ void addconc::Execute() {
 	pGInfo->PointsList[1].x = Cx1;
 	pGInfo->PointsList[1].y = Cy1;
 	// TODO: Check thet the pointys belong to pins
-	
-	Connection* pA = new Connection(pGInfo,true,"Line");
-	pManager->AddComponent(pA);
-	
+	if (pGInfo->PointsList[0].y > (pUI->getToolBarHeight()) + 15 &&
+		pGInfo->PointsList[1].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
+		pGInfo->PointsList[0].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
+		pGInfo->PointsList[1].y >(pUI->getToolBarHeight()) + 15 &&
+		pGInfo->PointsList[0].x < (pUI->getwidth()) - 100 && pGInfo->PointsList[1].x < (pUI->getwidth()) - 100) {
+		Connection* pA = new Connection(pGInfo, true, "Line");
+		pManager->AddComponent(pA);
+	}
+	else {
+		pUI->PrintMsg("Invalid place.Try again.");
+	}
 }
 void addconc::Undo() {}
 void addconc::Redo() {}

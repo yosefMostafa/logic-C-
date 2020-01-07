@@ -33,7 +33,8 @@ public:
 	void selectd();
 	void edit();
 	void uselect();
-	
+	void copy();
+	void move();
 	void UpdateInterface();	//Redraws all the drawing window
 
 	//Gets a pointer to UI Object

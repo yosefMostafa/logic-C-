@@ -99,6 +99,11 @@ class UI
 private:
 	int lastclickx;
 	int lastclicky;
+	int width1 = 1280, height1 = 800,	//Window width and height
+		wx1 = 15, wy1 = 15,			//Window starting coordinates
+		StatusBarHeight1 = 50,	//Status Bar Height
+		ToolBarHeight1 = 80,		//Tool Bar Height (distance from top of window to bottom line of toolbar)
+		ToolItemWidth1 = 80;		//Width of each item in toolbar menu
 public:
 	int getlastclickx();
 	int getlastclicky();
@@ -112,7 +117,13 @@ public:
 	void drawline(int x, int y, int x1, int x2);
 	void drawstring(int x, int y,string f);
 	void WaitKeyPress(char& cKey);
-
+	void getmousecor(int& x, int& y);
+	void getmouseclick(int& X, int& y);
+	int getToolBarHeight();
+	int  getToolItemWidth();
+	int  getheight();
+	int  getwidth();
+	int getStatusBarHeight();
 
 	ActionType GetUserAction() ; //Reads the user click and maps it to an action
 

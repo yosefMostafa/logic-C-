@@ -75,3 +75,9 @@ void Connection::save(ofstream &data) {
 bool Connection::gettrandfa() {
 	return trandfa;
 }
+void Connection::setGInfo(GraphicsInfo* r_GfxInfo) {
+	m_pGfxInfo = r_GfxInfo;
+}
+void Connection::getlabel(string &x) {
+	x=label;
+}

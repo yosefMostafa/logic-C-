@@ -16,7 +16,10 @@ Gate::Gate(GraphicsInfo* pGfxInfo, int r_Inputs, int r_FanOut):Component(pGfxInf
 		m_InputPins[i].setComponent(this);
 }
 bool Gate::selected(int x, int y) {
-		if (x >= m_pGfxInfo->PointsList[0].x &&x <= m_pGfxInfo->PointsList[1].x && y >= m_pGfxInfo->PointsList[0].y && y <= m_pGfxInfo->PointsList[1].y) {
+		if (x >= m_pGfxInfo->PointsList[0].x &&
+			x<= m_pGfxInfo->PointsList[1].x &&
+			y >= m_pGfxInfo->PointsList[0].y &&
+			y <= m_pGfxInfo->PointsList[1].y) {
 			return true;
 		}
 		else {
@@ -34,4 +37,10 @@ void Gate::setlabel(string s) {
 }
 bool Gate::gettrandfa() {
 	return trandfa;
+}
+void Gate::setGInfo(GraphicsInfo* r_GfxInfo) {
+	m_pGfxInfo = r_GfxInfo;
+}
+void Gate::getlabel(string& s) {
+	s = label;
 }

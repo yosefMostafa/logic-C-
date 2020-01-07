@@ -27,7 +27,8 @@ public:
 	virtual void settrandfa(bool s);
 	virtual bool gettrandfa();
 	virtual void setlabel(string s);
-
+	virtual void setGInfo(GraphicsInfo* r_GfxInfo);
+	virtual void getlabel(string& s);
 };
 
 #endif

@@ -78,6 +78,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case ADD_INV:
 			pAct = new AddNOT(this);
 			break;
+		case COPY:
+			copy();
+			break;
 		case DEL:
 			delete1();
 			break;
@@ -96,6 +99,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case USELECT:
 			uselect();
 			break;
+		case MOVE:
+			move();
 		case EXIT:
 			break;
 	}
@@ -110,7 +115,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 void ApplicationManager::UpdateInterface()
 {
-	int width = 1280; int height = 800;
+	int width = pUI->getwidth(); int height = pUI->getheight();
 	pUI->drawRectangle(0, 96, width- 100, height - 50);
 	for (int i = 0; i < width - 100; i = i + 20) {
 		pUI->drawline(i, 95, i, height - 50);
@@ -140,27 +145,55 @@ ApplicationManager::~ApplicationManager()
 }
 ///////////////////////////////////////////////////////////////////
 void ApplicationManager::delete1() {
-	int Cx, Cy;
-	/*for (int i = 0; i < CompCount; i++) {
+	int Cx, Cy,c=0, n = 0;
+	for (int i = 0; i < CompCount; i++) {
 		if (CompList[i]->gettrandfa() == false) {
-			delete CompList[i];//yosef added
-			CompList[i] = CompList[CompCount - 1];
-			CompCount = CompCount - 1;
-			pUI->PrintMsg("deleted");
 			c = 1;
 		}
 	}
+		if (c == 1) {
+			int CompCount1 = CompCount;
+			for (int i = 0; i < CompCount1; i++) {
+				if (CompList[i]->gettrandfa() == false) {
+					delete CompList[i];//yosef added
+					CompList[i] = CompList[CompCount - 1];
+					CompCount = CompCount-1;
+					pUI->PrintMsg("deleted");
+					UpdateInterface();
+				}
+			}
+		}
+		else {
+			pUI->PrintMsg("select component to delete .");
+			pUI->GetPointClicked(Cx, Cy);
+			pUI->ClearStatusBar();
+			for (int i = 0; i < CompCount; i++) {
+				if (CompList[i]->selected(Cx, Cy)) {
+					delete CompList[i];//yosef added
+					CompList[i] = CompList[CompCount - 1];
+					pUI->PrintMsg("deleted");
+					CompCount = CompCount - 1;
+					UpdateInterface();
+					n = 1;
+				}
+				else {
+					if (n == 0) {
+						pUI->PrintMsg("an empty place");
+					}
+				}
+			}
+		}
+
 	//Clear Status Bar
-	if (c == 0) {
+	/*if (c == 0) {
 		pUI->PrintMsg("Click to delete the gate");
 	}
 	else {
 		pUI->PrintMsg("Select to delete anothe Components or press any where");
 		pUI->GetPointClicked(Cx, Cy);
 	}*/
-	pUI->GetPointClicked(Cx, Cy);
-	pUI->ClearStatusBar();
-	for (int i = 0; i <CompCount; i++) {
+	
+	/*for (int i = 0; i <CompCount; i++) {
 			if (CompList[i]->selected(Cx, Cy)) {
 				delete CompList[i];//yosef added
 				CompList[i] = CompList[CompCount - 1];
@@ -170,16 +203,25 @@ void ApplicationManager::delete1() {
 			else {
 				pUI->PrintMsg("an empty place");
 			}
-	}
+	}*/
 }
 ///////////////////////////////////////////////////////////////////
 void ApplicationManager::selectd() {
-
-	for (int i = 0; i <CompCount; i++) {
+	int j=0;
+	for (int i = 0; i < CompCount; i++) {
+		if (CompList[i]->selected(pUI->getlastclickx(), pUI->getlastclicky())) {
+			j = 0;
+			break;
+		}
+		else {
+			j = 1;
+		}
+	}
+	for (int i = 0; i < CompCount; i++) {
 		if (CompList[i]->selected(pUI->getlastclickx(), pUI->getlastclicky())) {
 			CompList[i]->settrandfa(false);
 		}
-		else {
+		else if (j == 1) {
 			CompList[i]->settrandfa(true);
 		}
 	}
@@ -289,6 +331,59 @@ void ApplicationManager::uselect() {
 	for (int i = 0; i < CompCount; i++) {
 		if (CompList[i]->gettrandfa() == false) {
 			CompList[i]->settrandfa(true);
+		}
+	}
+}
+void ApplicationManager::copy() {
+	int cx, cy;
+	for (int i = 0; i < CompCount; i++) {
+		if (CompList[i]->gettrandfa() == false) {
+
+			pUI->getmouseclick(cx, cy);
+		}
+	}
+}
+void ApplicationManager::move() {
+	int x, y;
+	int x2 = 0, y2 = 0;
+	string s;
+	for (int i = 0; i < CompCount; i++) {
+		while (CompList[i]->gettrandfa() == false) {
+			pUI->getmousecor(x, y);
+			if ((x2 == x || y2 == y)) {
+			}
+			else if ((x2 > x + 15 || x2 < x - 15) && (y2 > y + 15 || y2 < y - 15)) {
+				CompList[i]->getlabel(s);
+				if (s == "Line") {
+					break;
+				}
+				else {
+					GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct
+					pGInfo->PointsList[0].x = x - 25;
+					pGInfo->PointsList[0].y = y - 25;
+					pGInfo->PointsList[1].x = x + 25;
+					pGInfo->PointsList[1].y = y + 25;
+					CompList[i]->setGInfo(pGInfo);
+					if (pGInfo->PointsList[0].y > (pUI->getToolBarHeight()) + 15 &&
+						pGInfo->PointsList[1].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
+						pGInfo->PointsList[0].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
+						pGInfo->PointsList[1].y >(pUI->getToolBarHeight()) + 15 &&
+						pGInfo->PointsList[0].x < (pUI->getwidth()) - 100 &&
+						pGInfo->PointsList[1].x < (pUI->getwidth()) - 100){
+						UpdateInterface();
+				    }
+					int x1, y1;
+					pUI->getmouseclick(x1, y1);
+					if (x1 > 0) {
+						break;
+					}
+					x2 = x; y = y2;
+				}
+			}
+			else {
+
+			}
+
 		}
 	}
 }
