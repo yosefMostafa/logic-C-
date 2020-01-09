@@ -15,7 +15,7 @@ void AND2::Operate()
 
 	//Add you code here
 }
-
+ 
 
 // Function Draw
 // Draws 2-input AND gate

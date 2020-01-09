@@ -78,6 +78,12 @@ bool Connection::gettrandfa() {
 void Connection::setGInfo(GraphicsInfo* r_GfxInfo) {
 	m_pGfxInfo = r_GfxInfo;
 }
-void Connection::getlabel(string &x) {
-	x=label;
+void Connection::getlabel(string& x) {
+	x = label;
+}
+void Connection::getGInfo(GraphicsInfo* r_GfxInfo) {
+	r_GfxInfo->PointsList[0].x = m_pGfxInfo->PointsList[0].x;
+	r_GfxInfo->PointsList[1].x = m_pGfxInfo->PointsList[1].x;
+	r_GfxInfo->PointsList[1].y = m_pGfxInfo->PointsList[1].y;
+	r_GfxInfo->PointsList[0].y = m_pGfxInfo->PointsList[0].y;
 }

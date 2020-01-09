@@ -19,6 +19,7 @@ private:
 
 	
 	int CompCount;		//Actual number of Components
+	string comtype;
 	Component* CompList[MaxCompCount];
 public:	
 	ApplicationManager(); //constructor
@@ -34,7 +35,9 @@ public:
 	void edit();
 	void uselect();
 	void copy();
+	void cut();
 	void move();
+	void paste();
 	void UpdateInterface();	//Redraws all the drawing window
 
 	//Gets a pointer to UI Object

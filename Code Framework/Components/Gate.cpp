@@ -44,3 +44,6 @@ void Gate::setGInfo(GraphicsInfo* r_GfxInfo) {
 void Gate::getlabel(string& s) {
 	s = label;
 }
+void Gate::getGInfo(GraphicsInfo* r_GfxInfo) {
+	r_GfxInfo = m_pGfxInfo;
+}

@@ -24,6 +24,7 @@ public:
 	virtual void setlabel(string s);
 	virtual void getlabel(string &s);
 	virtual bool gettrandfa();
+	virtual void getGInfo(GraphicsInfo* r_GfxInfo);
 	virtual void setGInfo(GraphicsInfo* r_GfxInfo);
 	void setSourcePin(OutputPin *pSrcPin);
 	void setDestPin(InputPin *pDstPin);

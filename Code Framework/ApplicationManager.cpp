@@ -47,7 +47,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	Action* pAct = NULL;
 	switch (ActType)
 	{
-		UI *pUI;
 		case ADD_AND_GATE_2:
 			pAct= new AddANDgate2(this);
 			break;
@@ -78,6 +77,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case ADD_INV:
 			pAct = new AddNOT(this);
 			break;
+		case PASTE:
+			paste();
+			break;
 		case COPY:
 			copy();
 			break;
@@ -92,6 +94,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case LOAD:
 			load();
+			break;
+		case CUT:
+			cut();
 			break;
 		case EDIT_Label:
 			edit();
@@ -335,12 +340,77 @@ void ApplicationManager::uselect() {
 	}
 }
 void ApplicationManager::copy() {
-	int cx, cy;
 	for (int i = 0; i < CompCount; i++) {
 		if (CompList[i]->gettrandfa() == false) {
-
-			pUI->getmouseclick(cx, cy);
+			CompList[i]->getlabel(comtype);
+			if (comtype == "Line") {
+				pUI->PrintMsg("Line can't be Copied");
+			}
+			else {
+				pUI->PrintMsg("Copied");
+			}
 		}
+	}
+}
+void ApplicationManager::cut() {
+	int x = 0;//needs improvments (conc)
+	for (int i = 0; i < CompCount; i++) {
+		if (CompList[i]->gettrandfa() == false) {
+			CompList[i]->getlabel(comtype);
+			if (comtype == "Line") {
+				pUI->PrintMsg("Line can't be Cuted");
+			}
+			else {
+				x++;
+				if (x == 2) {
+					break;
+				}
+				else {
+					delete CompList[i];
+					CompList[i] = CompList[CompCount - 1];
+					CompCount = CompCount - 1;
+					UpdateInterface();
+					pUI->PrintMsg("Cuted");
+				}
+			}
+		}
+	}
+}
+void ApplicationManager::paste() {
+	pUI->PrintMsg(" ");
+	Action* pAct = NULL;
+	if (comtype == "AND") {
+		pAct = new AddANDgate2(this);
+	}
+	else if (comtype == "XOR") {
+		pAct = new AddXORgate(this);
+	}
+	else if (comtype == "OR") {
+		pAct = new AddORgate2(this);
+	}
+	else if (comtype == "NAND") {
+		pAct = new AddNANDgate2(this);
+	}
+	else if (comtype == "NOR") {
+		pAct = new AddNORgate(this);
+	}
+	else if (comtype == "XNOR") {
+		pAct = new AddXNORgate(this);
+	}
+	else if (comtype == "Led") {
+		pAct = new Addled(this);
+	}
+	else if (comtype == "SWITCH"){
+		pAct = new Addswitch(this);
+    }else if (comtype == "NOT"){
+		pAct = new AddNOT(this);
+	}
+	if (pAct)
+	{
+		pAct->Execute();
+		delete pAct;
+		pAct = NULL;
+		pUI->PrintMsg("Pasted");
 	}
 }
 void ApplicationManager::move() {
@@ -350,12 +420,36 @@ void ApplicationManager::move() {
 	for (int i = 0; i < CompCount; i++) {
 		while (CompList[i]->gettrandfa() == false) {
 			pUI->getmousecor(x, y);
+			int pics = 0;
 			if ((x2 == x || y2 == y)) {
 			}
-			else if ((x2 > x + 15 || x2 < x - 15) && (y2 > y + 15 || y2 < y - 15)) {
+			else if ((x2 > x + pics || x2 < x - pics) && (y2 > y + pics || y2 < y - pics)) {
 				CompList[i]->getlabel(s);
+				int x1, y1;
 				if (s == "Line") {
-					break;
+					GraphicsInfo* pGInfo = new GraphicsInfo(2);
+					GraphicsInfo* pGInfonew = new GraphicsInfo(2);//Gfx info to be used to construct
+					CompList[i]->getGInfo(pGInfo);
+						//pGInfonew->PointsList[0].x = x/2;
+						//pGInfonew->PointsList[1].x = pGInfo->PointsList[1].x +(x - x2);
+						//pGInfonew->PointsList[0].y = (10);
+						//pGInfonew->PointsList[1].y = pGInfo->PointsList[1].y + (y- y2);
+						CompList[i]->setGInfo(pGInfonew);
+						UpdateInterface();
+				
+					/*/if (pGInfo->PointsList[0].y > (pUI->getToolBarHeight()) + 15 &&
+						pGInfo->PointsList[1].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
+						pGInfo->PointsList[0].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
+						pGInfo->PointsList[1].y >(pUI->getToolBarHeight()) + 15 &&
+						pGInfo->PointsList[0].x < (pUI->getwidth()) - 100 &&
+						pGInfo->PointsList[1].x < (pUI->getwidth()) - 100) {
+						UpdateInterface();
+					}*/
+					pUI->getmouseclick(x1, y1);
+					if (x1 > 0) {
+						break;
+					}
+					x2 = x; y = y2;
 				}
 				else {
 					GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct
@@ -372,7 +466,6 @@ void ApplicationManager::move() {
 						pGInfo->PointsList[1].x < (pUI->getwidth()) - 100){
 						UpdateInterface();
 				    }
-					int x1, y1;
 					pUI->getmouseclick(x1, y1);
 					if (x1 > 0) {
 						break;

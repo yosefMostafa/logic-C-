@@ -354,7 +354,7 @@ void UI::DrawAND2(const GraphicsInfo &r_GfxInfo, bool selected,string f) const
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
 	pWind->SetPen(BLACK, 20);
 	pWind->SetFont(15, 5, MODERN);
-	pWind->DrawString((r_GfxInfo.PointsList[0].x+GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y+GATE_Height + 5, f);
+	pWind->DrawString((r_GfxInfo.PointsList[0].x+(GATE_Width / 2)-15) , r_GfxInfo.PointsList[0].y+(GATE_Height/3) , f);
 }
 void UI::DrawNAND2(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 {
@@ -371,7 +371,7 @@ void UI::DrawNAND2(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
 	pWind->SetPen(BLACK, 20);
 	pWind->SetFont(15, 5, MODERN);
-	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
+	pWind->DrawString((r_GfxInfo.PointsList[0].x + (GATE_Width / 2) - 15), r_GfxInfo.PointsList[0].y + (GATE_Height / 3), f);
 }
 void UI::DrawOR2(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 {
@@ -386,7 +386,7 @@ void UI::DrawOR2(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
 	pWind->SetPen(BLACK, 20);
 	pWind->SetFont(15, 5, MODERN);
-	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
+	pWind->DrawString((r_GfxInfo.PointsList[0].x + (GATE_Width / 2) - 15), r_GfxInfo.PointsList[0].y + (GATE_Height / 3), f);
 }
 void UI::DrawXOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 {
@@ -401,7 +401,7 @@ void UI::DrawXOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
 	pWind->SetPen(BLACK, 20);
 	pWind->SetFont(15, 5, MODERN);
-	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
+	pWind->DrawString((r_GfxInfo.PointsList[0].x + (GATE_Width / 2) - 15), r_GfxInfo.PointsList[0].y + (GATE_Height / 3), f);
 }
 void UI::DrawXNOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 {
@@ -416,7 +416,7 @@ void UI::DrawXNOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
 	pWind->SetPen(BLACK, 20);
 	pWind->SetFont(15, 5, MODERN);
-	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
+	pWind->DrawString((r_GfxInfo.PointsList[0].x + (GATE_Width / 2) - 15), r_GfxInfo.PointsList[0].y + (GATE_Height / 3), f);
 }
 void UI::DrawNOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 {
@@ -431,7 +431,7 @@ void UI::DrawNOR(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
 	pWind->SetPen(BLACK, 20);
 	pWind->SetFont(15, 5, MODERN);
-	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
+	pWind->DrawString((r_GfxInfo.PointsList[0].x + (GATE_Width / 2) - 15), r_GfxInfo.PointsList[0].y + (GATE_Height / 3), f);
 }
 void UI::Drawled(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 {
@@ -446,7 +446,7 @@ void UI::Drawled(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
 	pWind->SetPen(BLACK, 20);
 	pWind->SetFont(15, 5, MODERN);
-	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
+	pWind->DrawString((r_GfxInfo.PointsList[0].x + (GATE_Width / 2) - 15), r_GfxInfo.PointsList[0].y + (GATE_Height / 3), f);
 }
 void UI::Drawswitch(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 {
@@ -461,7 +461,7 @@ void UI::Drawswitch(const GraphicsInfo& r_GfxInfo, bool selected, string f) cons
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
 	pWind->SetPen(BLACK, 20);
 	pWind->SetFont(15, 5, MODERN);
-	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
+	pWind->DrawString((r_GfxInfo.PointsList[0].x + (GATE_Width / 2) - 15), r_GfxInfo.PointsList[0].y + (GATE_Height / 3), f);
 }
 void UI::DrawNOT(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 {
@@ -476,7 +476,7 @@ void UI::DrawNOT(const GraphicsInfo& r_GfxInfo, bool selected, string f) const
 	pWind->DrawImage(GateImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, GATE_Width, GATE_Height);
 	pWind->SetPen(BLACK, 20);
 	pWind->SetFont(15, 5, MODERN);
-	pWind->DrawString((r_GfxInfo.PointsList[0].x + GATE_Width / 2) - 20, r_GfxInfo.PointsList[0].y + GATE_Height + 5, f);
+	pWind->DrawString((r_GfxInfo.PointsList[0].x + (GATE_Width / 2) - 15), r_GfxInfo.PointsList[0].y + (GATE_Height / 3), f);
 }
 //TODO: Add similar functions to draw all components
 
