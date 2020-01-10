@@ -37,6 +37,7 @@ public:
 	virtual void Draw(UI* ) = 0;	//for each component to Draw itself
 	virtual bool selected(int x,int y) = 0;
 	virtual void save(ofstream &data) = 0;
+	virtual int copy() = 0;
 	virtual void setGInfo(GraphicsInfo* r_GfxInfo) = 0;
 	virtual void getGInfo(GraphicsInfo* r_GfxInfo) = 0;
 	

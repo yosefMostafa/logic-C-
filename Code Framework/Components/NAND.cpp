@@ -47,3 +47,6 @@ void NAND2::setInputPinStatus(int n, STATUS s)
 void NAND2::save(ofstream& data) {
 	data << NAND << "  " << label << "  " << m_pGfxInfo->PointsList[0].x << "  " << m_pGfxInfo->PointsList[0].y << "  " << m_pGfxInfo->PointsList[1].x << "  " << m_pGfxInfo->PointsList[1].y << endl;
 }
+int NAND2::copy() {
+	return NAND;
+}

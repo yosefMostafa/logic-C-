@@ -48,3 +48,6 @@ void AND2::save(ofstream &data) {
 	
 	data << AND << "  " <<label<<"  "<< m_pGfxInfo->PointsList[0].x << "  " << m_pGfxInfo->PointsList[0].y <<"  "<< m_pGfxInfo->PointsList[1].x << "  " << m_pGfxInfo->PointsList[1].y << endl;
 }
+int AND2::copy() {
+	return  AND;
+}

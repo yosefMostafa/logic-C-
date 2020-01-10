@@ -30,6 +30,7 @@ public:
 	virtual void setGInfo(GraphicsInfo* r_GfxInfo);
 	virtual void getlabel(string& s);
 	virtual void getGInfo(GraphicsInfo* r_GfxInfo);
+	virtual int copy() { return NULL; };
 };
 
 #endif

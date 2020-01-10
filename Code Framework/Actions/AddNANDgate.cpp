@@ -11,7 +11,7 @@ AddNANDgate2::~AddNANDgate2(void)
 {
 }
 
-void AddNANDgate2::Execute()
+void AddNANDgate2::Execute(string s)
 {
 
 	//Get a Pointer to the user Interfaces
@@ -29,7 +29,7 @@ void AddNANDgate2::Execute()
 	int gateWidth = pUI->getGateWidth();
 	int gateHeight = pUI->getGateHeight();
 
-	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the AND2 gate
+	pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the AND2 gate
 
 	pGInfo->PointsList[0].x = Cx - gateWidth / 2;
 	pGInfo->PointsList[0].y = Cy - gateHeight / 2;
@@ -40,7 +40,7 @@ void AddNANDgate2::Execute()
 		pGInfo->PointsList[0].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
 		pGInfo->PointsList[1].y >(pUI->getToolBarHeight()) + 15 &&
 		pGInfo->PointsList[0].x < (pUI->getwidth()) - 100 && pGInfo->PointsList[1].x < (pUI->getwidth()) - 100) {
-		NAND2* pA = new NAND2(pGInfo, AND2_FANOUT, true, "NAND");
+		NAND2* pA = new NAND2(pGInfo, AND2_FANOUT, true, s);
 		pManager->AddComponent(pA);
 	}
 	else {
@@ -49,8 +49,24 @@ void AddNANDgate2::Execute()
 }
 
 
-void AddNANDgate2::Undo()
-{}
+void AddNANDgate2::Undo(GraphicsInfo* rGInfo)
+{
+	rGInfo->PointsList[0].x = pGInfo->PointsList[0].x;
+	rGInfo->PointsList[1].x = pGInfo->PointsList[1].x;
+	rGInfo->PointsList[1].y = pGInfo->PointsList[1].y;
+	rGInfo->PointsList[0].y = pGInfo->PointsList[0].y;
+}
 
-void AddNANDgate2::Redo()
-{}
+void AddNANDgate2::Redo(GraphicsInfo* pGInfo)
+{
+	UI* pUI = pManager->GetUI();
+	if (pGInfo->PointsList[0].y > (pUI->getToolBarHeight()) + 15 &&
+		pGInfo->PointsList[1].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
+		pGInfo->PointsList[0].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
+		pGInfo->PointsList[1].y >(pUI->getToolBarHeight()) + 15 &&
+		pGInfo->PointsList[0].x < (pUI->getwidth()) - 100 &&
+		pGInfo->PointsList[1].x < (pUI->getwidth()) - 100) {
+		NAND2* pA = new NAND2(pGInfo, AND2_FANOUT, true, "NAND");
+		pManager->AddComponent(pA);
+	}
+}

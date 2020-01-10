@@ -11,14 +11,14 @@ AddXNORgate::~AddXNORgate(void)
 {
 }
 
-void AddXNORgate::Execute()
+void AddXNORgate::Execute(string s)
 {
 
 	//Get a Pointer to the user Interfaces
 	UI* pUI = pManager->GetUI();
 
 	//Print Action Message
-	pUI->PrintMsg("2-Input AND Gate: Click to add the gate");
+	pUI->PrintMsg("2-Input XNOR Gate: Click to add the gate");
 
 	//Get Center point of the Gate
 	pUI->GetPointClicked(Cx, Cy);
@@ -29,7 +29,7 @@ void AddXNORgate::Execute()
 	int gateWidth = pUI->getGateWidth();
 	int gateHeight = pUI->getGateHeight();
 
-	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the AND2 gate
+	pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the AND2 gate
 
 	pGInfo->PointsList[0].x = Cx - gateWidth / 2;
 	pGInfo->PointsList[0].y = Cy - gateHeight / 2;
@@ -40,7 +40,7 @@ void AddXNORgate::Execute()
 		pGInfo->PointsList[0].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
 		pGInfo->PointsList[1].y >(pUI->getToolBarHeight()) + 15 &&
 		pGInfo->PointsList[0].x < (pUI->getwidth()) - 100 && pGInfo->PointsList[1].x < (pUI->getwidth()) - 100) {
-		XNOR* pA = new XNOR(pGInfo, AND2_FANOUT, true, "XNOR");
+		XNOR* pA = new XNOR(pGInfo, AND2_FANOUT, true, s);
 		pManager->AddComponent(pA);
 	}
 	else {
@@ -49,9 +49,25 @@ void AddXNORgate::Execute()
 }
 
 
-void AddXNORgate::Undo()
-{}
+void AddXNORgate::Undo(GraphicsInfo* rGInfo)
+{
+	rGInfo->PointsList[0].x = pGInfo->PointsList[0].x;
+	rGInfo->PointsList[1].x = pGInfo->PointsList[1].x;
+	rGInfo->PointsList[1].y = pGInfo->PointsList[1].y;
+	rGInfo->PointsList[0].y = pGInfo->PointsList[0].y;
+}
 
-void AddXNORgate::Redo()
-{}
+void AddXNORgate::Redo(GraphicsInfo* pGInfo)
+{
+	UI* pUI = pManager->GetUI();
+	if (pGInfo->PointsList[0].y > (pUI->getToolBarHeight()) + 15 &&
+		pGInfo->PointsList[1].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
+		pGInfo->PointsList[0].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
+		pGInfo->PointsList[1].y >(pUI->getToolBarHeight()) + 15 &&
+		pGInfo->PointsList[0].x < (pUI->getwidth()) - 100 &&
+		pGInfo->PointsList[1].x < (pUI->getwidth()) - 100) {
+		XNOR* pA = new XNOR(pGInfo, AND2_FANOUT, true, "XNOR");
+		pManager->AddComponent(pA);
+	}
+}
 

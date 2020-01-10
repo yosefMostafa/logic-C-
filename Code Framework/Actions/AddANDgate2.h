@@ -13,12 +13,12 @@ private:
 public:
 	AddANDgate2(ApplicationManager *pApp);
 	virtual ~AddANDgate2(void);
-
+	GraphicsInfo* pGInfo;
 	//Execute action (code depends on action type)
-	virtual void Execute();
+	virtual void Execute(string s);
 
-	virtual void Undo();
-	virtual void Redo();
+	virtual void Undo(GraphicsInfo* rGInfo);
+	virtual void Redo(GraphicsInfo* rGInfo);
 };
 
 #endif

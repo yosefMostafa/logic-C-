@@ -22,9 +22,11 @@ ApplicationManager::ApplicationManager()
 {
 	CompCount = 0;
 
-	for(int i=0; i<MaxCompCount; i++)
+	for (int i = 0; i < MaxCompCount; i++) {
 		CompList[i] = NULL;
-
+		rGInfo[i] = NULL;
+		RActtype[i]= DSN_TOOL;
+	}
 	//Creates the UI Object & Initialize the UI
 	pUI = new UI;
 }
@@ -49,33 +51,53 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	{
 		case ADD_AND_GATE_2:
 			pAct= new AddANDgate2(this);
+			label = "AND";
+			RActtype[CompCount] = ActType;
 			break;
 		case ADD_XOR_GATE_2:
 			pAct = new AddXORgate(this);
+			label = "XOR";
+			RActtype[CompCount] = ActType;
 			break;
 		case ADD_OR_GATE_2:
 			pAct = new AddORgate2(this);
+			label = "OR";
+			RActtype[CompCount] = ActType;
 			break;
 		case ADD_CONNECTION:
 			pAct = new addconc(this);
+			label = "Line";
+			RActtype[CompCount] = ActType;
 			break;
 		case ADD_NAND_GATE_2:
 			pAct = new AddNANDgate2(this);
+			label = "NAND";
+			RActtype[CompCount] = ActType;
 			break;
 		case ADD_NOR_GATE_2:
 			pAct = new AddNORgate(this);
+			label = "NOR";
+			RActtype[CompCount] = ActType;
 			break;
 		case ADD_XNOR_GATE_2:
 			pAct = new AddXNORgate(this);
+			label = "XNOR";
+			RActtype[CompCount] = ActType;
 			break;
 		case ADD_LED:
 			pAct = new Addled(this);
+			label = "Led";
+			RActtype[CompCount] = ActType;
 			break;
 		case ADD_Switch:
 			pAct=new Addswitch(this);
+			label = "SWITCH";
+			RActtype[CompCount] = ActType;
 				break;
 		case ADD_INV:
 			pAct = new AddNOT(this);
+			label = "NOT";
+			RActtype[CompCount] = ActType;
 			break;
 		case PASTE:
 			paste();
@@ -84,7 +106,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			copy();
 			break;
 		case DEL:
-			delete1();
+			delete1(1);
 			break;
 		case SELECT:
 			selectd();
@@ -106,12 +128,21 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case MOVE:
 			move();
+			break;
+		case UNDO:
+			undo();
+			break;
+		case REDO:
+			redo();
+			break;
 		case EXIT:
 			break;
 	}
 	if(pAct)
 	{
-		pAct->Execute();
+		pAct->Execute(label);
+		rGInfo[CompCount-1] = new GraphicsInfo(2);
+		pAct->Undo(rGInfo[CompCount-1]);
 		delete pAct;
 		pAct = NULL;
 	}
@@ -143,26 +174,45 @@ UI* ApplicationManager::GetUI()
 
 ApplicationManager::~ApplicationManager()
 {
-	for(int i=0; i<CompCount; i++)
+	for (int i = 0; i < CompCount; i++) {
 		delete CompList[i];
+		delete rGInfo[i];
+	}
 	delete pUI;
-	
 }
 ///////////////////////////////////////////////////////////////////
-void ApplicationManager::delete1() {
+void ApplicationManager::delete1(int func) {
 	int Cx, Cy,c=0, n = 0;
-	for (int i = 0; i < CompCount; i++) {
-		if (CompList[i]->gettrandfa() == false) {
-			c = 1;
+	if (func == 0) {
+		if (CompCount == 0) {
+
+		}
+		else {
+			delete CompList[CompCount - 1];
+			CompCount = CompCount - 1;
+			UpdateInterface();
 		}
 	}
+	else {
+		for (int i = 0; i < CompCount; i++) {
+			if (CompList[i]->gettrandfa() == false) {
+				c = 1;
+			}
+		}
 		if (c == 1) {
 			int CompCount1 = CompCount;
 			for (int i = 0; i < CompCount1; i++) {
 				if (CompList[i]->gettrandfa() == false) {
-					delete CompList[i];//yosef added
+					delete CompList[i];
+					delete rGInfo[i];
+					ActionType LActtype;
+					RActtype[i] = DSN_TOOL;
+					LActtype= RActtype[i];//yosef added
 					CompList[i] = CompList[CompCount - 1];
-					CompCount = CompCount-1;
+					rGInfo[i] = rGInfo[CompCount-1];
+					RActtype[i] = RActtype[CompCount - 1];
+					RActtype[CompCount - 1]= LActtype;
+					CompCount = CompCount - 1;
 					pUI->PrintMsg("deleted");
 					UpdateInterface();
 				}
@@ -174,9 +224,15 @@ void ApplicationManager::delete1() {
 			pUI->ClearStatusBar();
 			for (int i = 0; i < CompCount; i++) {
 				if (CompList[i]->selected(Cx, Cy)) {
-					delete CompList[i];//yosef added
+					delete CompList[i];
+					delete rGInfo[i];
+					ActionType LActtype;
+					RActtype[i] = DSN_TOOL;
+					LActtype = RActtype[i];//yosef added
 					CompList[i] = CompList[CompCount - 1];
-					pUI->PrintMsg("deleted");
+					rGInfo[i] = rGInfo[CompCount - 1];
+					RActtype[i] = RActtype[CompCount - 1];
+					RActtype[CompCount - 1] = LActtype;
 					CompCount = CompCount - 1;
 					UpdateInterface();
 					n = 1;
@@ -188,6 +244,7 @@ void ApplicationManager::delete1() {
 				}
 			}
 		}
+	}
 
 	//Clear Status Bar
 	/*if (c == 0) {
@@ -342,12 +399,13 @@ void ApplicationManager::uselect() {
 void ApplicationManager::copy() {
 	for (int i = 0; i < CompCount; i++) {
 		if (CompList[i]->gettrandfa() == false) {
-			CompList[i]->getlabel(comtype);
-			if (comtype == "Line") {
+			CompList[i]->getlabel(cLabel);
+			if (cLabel == "Line") {
 				pUI->PrintMsg("Line can't be Copied");
 			}
 			else {
 				pUI->PrintMsg("Copied");
+				comtype=CompList[i]->copy();
 			}
 		}
 	}
@@ -356,8 +414,8 @@ void ApplicationManager::cut() {
 	int x = 0;//needs improvments (conc)
 	for (int i = 0; i < CompCount; i++) {
 		if (CompList[i]->gettrandfa() == false) {
-			CompList[i]->getlabel(comtype);
-			if (comtype == "Line") {
+			CompList[i]->getlabel(cLabel);
+			if (cLabel == "Line") {
 				pUI->PrintMsg("Line can't be Cuted");
 			}
 			else {
@@ -371,6 +429,7 @@ void ApplicationManager::cut() {
 					CompCount = CompCount - 1;
 					UpdateInterface();
 					pUI->PrintMsg("Cuted");
+					comtype = CompList[i]->copy();
 				}
 			}
 		}
@@ -379,35 +438,46 @@ void ApplicationManager::cut() {
 void ApplicationManager::paste() {
 	pUI->PrintMsg(" ");
 	Action* pAct = NULL;
-	if (comtype == "AND") {
+	if (comtype == AND) {
 		pAct = new AddANDgate2(this);
+		RActtype[CompCount] = ADD_AND_GATE_2;
 	}
-	else if (comtype == "XOR") {
+	else if (comtype == XOR1) {
 		pAct = new AddXORgate(this);
+		RActtype[CompCount] = ADD_XOR_GATE_2;
 	}
-	else if (comtype == "OR") {
+	else if (comtype == OR) {
 		pAct = new AddORgate2(this);
+		RActtype[CompCount] = ADD_OR_GATE_2;
 	}
-	else if (comtype == "NAND") {
+	else if (comtype == NAND) {
 		pAct = new AddNANDgate2(this);
+		RActtype[CompCount] = ADD_NAND_GATE_2;
 	}
-	else if (comtype == "NOR") {
+	else if (comtype == NOR1) {
 		pAct = new AddNORgate(this);
+		RActtype[CompCount] = ADD_NOR_GATE_2;
 	}
-	else if (comtype == "XNOR") {
+	else if (comtype == XNOR1) {
 		pAct = new AddXNORgate(this);
+		RActtype[CompCount] = ADD_XNOR_GATE_2;
 	}
-	else if (comtype == "Led") {
+	else if (comtype == LED) {
 		pAct = new Addled(this);
+		RActtype[CompCount] = ADD_LED;
 	}
-	else if (comtype == "SWITCH"){
+	else if (comtype == Switch1){
 		pAct = new Addswitch(this);
-    }else if (comtype == "NOT"){
+		RActtype[CompCount] = ADD_Switch;
+    }else if (comtype == NOT1){
 		pAct = new AddNOT(this);
+		RActtype[CompCount] = ADD_INV;
 	}
 	if (pAct)
 	{
-		pAct->Execute();
+		pAct->Execute(cLabel);
+		rGInfo[CompCount-1] = new GraphicsInfo(2);
+		pAct->Undo(rGInfo[CompCount-1]);
 		delete pAct;
 		pAct = NULL;
 		pUI->PrintMsg("Pasted");
@@ -478,5 +548,50 @@ void ApplicationManager::move() {
 			}
 
 		}
+	}
+}
+void ApplicationManager::undo() {
+	delete1(0);
+}
+void ApplicationManager::redo() {
+	Action* pAct = NULL;
+	switch (RActtype[CompCount])
+	{
+	case ADD_AND_GATE_2:
+		pAct = new AddANDgate2(this);
+		break;
+	case ADD_XOR_GATE_2:
+		pAct = new AddXORgate(this);
+		break;
+	case ADD_OR_GATE_2:
+		pAct = new AddORgate2(this);
+		break;
+	case ADD_CONNECTION:
+		pAct = new addconc(this);
+		break;
+	case ADD_NAND_GATE_2:
+		pAct = new AddNANDgate2(this);
+		break;
+	case ADD_NOR_GATE_2:
+		pAct = new AddNORgate(this);
+		break;
+	case ADD_XNOR_GATE_2:
+		pAct = new AddXNORgate(this);
+		break;
+	case ADD_LED:
+		pAct = new Addled(this);
+		break;
+	case ADD_Switch:
+		pAct = new Addswitch(this);
+		break;
+	case ADD_INV:
+		pAct = new AddNOT(this);
+		break;
+	}
+	if (pAct)
+	{
+		pAct->Redo(rGInfo[CompCount]);
+		delete pAct;
+		pAct = NULL;
 	}
 }

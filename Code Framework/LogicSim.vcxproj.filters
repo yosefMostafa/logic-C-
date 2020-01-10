@@ -111,9 +111,6 @@
     <ClInclude Include="UI\UI.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="ADDORgate2.h">
-      <Filter>Actions</Filter>
-    </ClInclude>
     <ClInclude Include="Actions\addconc.h">
       <Filter>Actions</Filter>
     </ClInclude>
@@ -162,6 +159,9 @@
     </ClInclude>
     <ClInclude Include="Components\NOT.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ADDORgate2.h">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -302,9 +302,6 @@
       <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ADDORgate2.cpp">
-      <Filter>Actions</Filter>
-    </ClCompile>
     <ClCompile Include="Actions\addconc.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
@@ -352,6 +349,9 @@
     </ClCompile>
     <ClCompile Include="Components\NOT.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ADDORgate2.cpp">
+      <Filter>Actions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

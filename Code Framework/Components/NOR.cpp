@@ -46,3 +46,6 @@ void NOR::setInputPinStatus(int n, STATUS s)
 void NOR::save(ofstream& data) {
 	data << NOR1 << "  " << label << "  " << m_pGfxInfo->PointsList[0].x << "  " << m_pGfxInfo->PointsList[0].y << "  " << m_pGfxInfo->PointsList[1].x << "  " << m_pGfxInfo->PointsList[1].y << endl;
 }
+int NOR::copy() {
+	return NOR1;
+}

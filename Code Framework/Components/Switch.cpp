@@ -48,3 +48,6 @@ void Switch::save(ofstream& data) {
 
 	data << Switch1 << "  " << label << "  " << m_pGfxInfo->PointsList[0].x << "  " << m_pGfxInfo->PointsList[0].y << "  " << m_pGfxInfo->PointsList[1].x << "  " << m_pGfxInfo->PointsList[1].y << endl;
 }
+int Switch::copy() {
+	return Switch1;
+}

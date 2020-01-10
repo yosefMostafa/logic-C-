@@ -10,7 +10,7 @@ AddXORgate::~AddXORgate(void)
 {
 }
 
-void AddXORgate::Execute()
+void AddXORgate::Execute(string s)
 {
 
 	//Get a Pointer to the user Interfaces
@@ -28,7 +28,7 @@ void AddXORgate::Execute()
 	int gateWidth = pUI->getGateWidth();
 	int gateHeight = pUI->getGateHeight();
 
-	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the AND2 gate
+	pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the AND2 gate
 
 	pGInfo->PointsList[0].x = Cx - gateWidth / 2;
 	pGInfo->PointsList[0].y = Cy - gateHeight / 2;
@@ -39,7 +39,7 @@ void AddXORgate::Execute()
 		pGInfo->PointsList[0].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
 		pGInfo->PointsList[1].y >(pUI->getToolBarHeight()) + 15 &&
 		pGInfo->PointsList[0].x < (pUI->getwidth()) - 100 && pGInfo->PointsList[1].x < (pUI->getwidth()) - 100) {
-		XOR* pA = new XOR(pGInfo, AND2_FANOUT, true, "XOR");
+		XOR* pA = new XOR(pGInfo, AND2_FANOUT, true, s);
 		pManager->AddComponent(pA);
 	}
 	else {
@@ -48,8 +48,24 @@ void AddXORgate::Execute()
 }
 
 
-void AddXORgate::Undo()
-{}
+void AddXORgate::Undo(GraphicsInfo* rGInfo)
+{
+	rGInfo->PointsList[0].x = pGInfo->PointsList[0].x;
+	rGInfo->PointsList[1].x = pGInfo->PointsList[1].x;
+	rGInfo->PointsList[1].y = pGInfo->PointsList[1].y;
+	rGInfo->PointsList[0].y = pGInfo->PointsList[0].y;
+}
 
-void AddXORgate::Redo()
-{}
+void AddXORgate::Redo(GraphicsInfo* pGInfo)
+{
+	UI* pUI = pManager->GetUI();
+	if (pGInfo->PointsList[0].y > (pUI->getToolBarHeight()) + 15 &&
+		pGInfo->PointsList[1].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
+		pGInfo->PointsList[0].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
+		pGInfo->PointsList[1].y >(pUI->getToolBarHeight()) + 15 &&
+		pGInfo->PointsList[0].x < (pUI->getwidth()) - 100 &&
+		pGInfo->PointsList[1].x < (pUI->getwidth()) - 100) {
+		XOR* pA = new XOR(pGInfo, AND2_FANOUT, true, "XOR");
+		pManager->AddComponent(pA);
+	}
+}

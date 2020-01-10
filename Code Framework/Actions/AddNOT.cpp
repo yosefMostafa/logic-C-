@@ -10,7 +10,7 @@ AddNOT::~AddNOT(void)
 {
 }
 
-void AddNOT::Execute()
+void AddNOT::Execute(string s)
 {
 
 	//Get a Pointer to the user Interfaces
@@ -28,7 +28,7 @@ void AddNOT::Execute()
 	int gateWidth = pUI->getGateWidth();
 	int gateHeight = pUI->getGateHeight();
 
-	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the AND2 gate
+	pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the AND2 gate
 
 	pGInfo->PointsList[0].x = Cx - gateWidth / 2;
 	pGInfo->PointsList[0].y = Cy - gateHeight / 2;
@@ -39,7 +39,7 @@ void AddNOT::Execute()
 		pGInfo->PointsList[0].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
 		pGInfo->PointsList[1].y >(pUI->getToolBarHeight()) + 15 &&
 		pGInfo->PointsList[0].x < (pUI->getwidth()) - 100 && pGInfo->PointsList[1].x < (pUI->getwidth()) - 100) {
-		NOT* pA = new NOT(pGInfo, AND2_FANOUT, true, "NOT");
+		NOT* pA = new NOT(pGInfo, AND2_FANOUT, true,s);
 		pManager->AddComponent(pA);
 	}
 	else {
@@ -48,8 +48,24 @@ void AddNOT::Execute()
 }
 
 
-void AddNOT::Undo()
-{}
+void AddNOT::Undo(GraphicsInfo* rGInfo)
+{
+	rGInfo->PointsList[0].x = pGInfo->PointsList[0].x;
+	rGInfo->PointsList[1].x = pGInfo->PointsList[1].x;
+	rGInfo->PointsList[1].y = pGInfo->PointsList[1].y;
+	rGInfo->PointsList[0].y = pGInfo->PointsList[0].y;
+}
 
-void AddNOT::Redo()
-{}
+void AddNOT::Redo(GraphicsInfo* pGInfo)
+{
+	UI* pUI = pManager->GetUI();
+	if (pGInfo->PointsList[0].y > (pUI->getToolBarHeight()) + 15 &&
+		pGInfo->PointsList[1].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
+		pGInfo->PointsList[0].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
+		pGInfo->PointsList[1].y >(pUI->getToolBarHeight()) + 15 &&
+		pGInfo->PointsList[0].x < (pUI->getwidth()) - 100 &&
+		pGInfo->PointsList[1].x < (pUI->getwidth()) - 100) {
+		NOT* pA = new NOT(pGInfo, AND2_FANOUT, true, "NOT");
+		pManager->AddComponent(pA);
+	}
+}

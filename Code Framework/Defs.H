@@ -4,6 +4,19 @@
 //This header file contains some defenitions to be used all over the application
 
 //All possible actions
+enum gate {
+	AND,
+	OR,
+	NAND,
+	XOR1,
+	LINE,
+	XNOR1,
+	NOR1,
+	LED,
+	Switch1,
+	NOT1,
+	LEBGHT
+};
 enum ActionType 
 {
 	ADD_Buff,			//Add 1-input Buffer gate

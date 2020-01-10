@@ -26,6 +26,7 @@ public:
 	virtual bool gettrandfa();
 	virtual void getGInfo(GraphicsInfo* r_GfxInfo);
 	virtual void setGInfo(GraphicsInfo* r_GfxInfo);
+	virtual int copy();
 	void setSourcePin(OutputPin *pSrcPin);
 	void setDestPin(InputPin *pDstPin);
 	OutputPin* getSourcePin();

@@ -87,3 +87,6 @@ void Connection::getGInfo(GraphicsInfo* r_GfxInfo) {
 	r_GfxInfo->PointsList[1].y = m_pGfxInfo->PointsList[1].y;
 	r_GfxInfo->PointsList[0].y = m_pGfxInfo->PointsList[0].y;
 }
+int Connection::copy() {
+	return LINE;
+}

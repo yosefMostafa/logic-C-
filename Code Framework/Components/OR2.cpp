@@ -44,3 +44,6 @@ void OR2::setInputPinStatus(int n, STATUS s)
 void OR2::save(ofstream& data) {
 	data << OR << "  " << label << "  " << m_pGfxInfo->PointsList[0].x << "  " << m_pGfxInfo->PointsList[0].y << "  " << m_pGfxInfo->PointsList[1].x << "  " << m_pGfxInfo->PointsList[1].y << endl;
 }
+int OR2::copy() {
+	return OR;
+}

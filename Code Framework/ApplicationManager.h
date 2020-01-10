@@ -19,16 +19,20 @@ private:
 
 	
 	int CompCount;		//Actual number of Components
-	string comtype;
+	int comtype;
 	Component* CompList[MaxCompCount];
+	GraphicsInfo* rGInfo[MaxCompCount];
+	ActionType RActtype[MaxCompCount];
+	string label,cLabel;
 public:	
 	ApplicationManager(); //constructor
 	//Reads the required action from the user and returns the corresponding action type
 	ActionType GetUserAction();
 	
+	
 	//Creates an action and executes it
 	void ExecuteAction(ActionType);
-	void delete1();
+	void delete1(int func);
 	void save();
 	void load();
 	void selectd();
@@ -38,6 +42,8 @@ public:
 	void cut();
 	void move();
 	void paste();
+	void undo();
+	void redo();	
 	void UpdateInterface();	//Redraws all the drawing window
 
 	//Gets a pointer to UI Object

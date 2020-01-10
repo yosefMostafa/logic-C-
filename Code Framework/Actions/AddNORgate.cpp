@@ -10,7 +10,7 @@ AddNORgate::~AddNORgate(void)
 {
 }
 
-void AddNORgate::Execute()
+void AddNORgate::Execute(string s)
 {
 
 	//Get a Pointer to the user Interfaces
@@ -28,7 +28,7 @@ void AddNORgate::Execute()
 	int gateWidth = pUI->getGateWidth();
 	int gateHeight = pUI->getGateHeight();
 
-	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the AND2 gate
+	pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the AND2 gate
 
 	pGInfo->PointsList[0].x = Cx - gateWidth / 2;
 	pGInfo->PointsList[0].y = Cy - gateHeight / 2;
@@ -39,7 +39,7 @@ void AddNORgate::Execute()
 		pGInfo->PointsList[0].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
 		pGInfo->PointsList[1].y >(pUI->getToolBarHeight()) + 15 &&
 		pGInfo->PointsList[0].x < (pUI->getwidth()) - 100 && pGInfo->PointsList[1].x < (pUI->getwidth()) - 100) {
-		NOR* pA = new NOR(pGInfo, AND2_FANOUT, true, "NOR");
+		NOR* pA = new NOR(pGInfo, AND2_FANOUT, true, s);
 		pManager->AddComponent(pA);
 	}
 	else {
@@ -48,8 +48,24 @@ void AddNORgate::Execute()
 }
 
 
-void AddNORgate::Undo()
-{}
+void AddNORgate::Undo(GraphicsInfo* rGInfo)
+{
+	rGInfo->PointsList[0].x = pGInfo->PointsList[0].x;
+	rGInfo->PointsList[1].x = pGInfo->PointsList[1].x;
+	rGInfo->PointsList[1].y = pGInfo->PointsList[1].y;
+	rGInfo->PointsList[0].y = pGInfo->PointsList[0].y;
+}
 
-void AddNORgate::Redo()
-{}
+void AddNORgate::Redo(GraphicsInfo* pGInfo)
+{
+	UI* pUI = pManager->GetUI();
+	if (pGInfo->PointsList[0].y > (pUI->getToolBarHeight()) + 15 &&
+		pGInfo->PointsList[1].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
+		pGInfo->PointsList[0].y < (pUI->getheight()) - (pUI->getStatusBarHeight()) &&
+		pGInfo->PointsList[1].y >(pUI->getToolBarHeight()) + 15 &&
+		pGInfo->PointsList[0].x < (pUI->getwidth()) - 100 &&
+		pGInfo->PointsList[1].x < (pUI->getwidth()) - 100) {
+		NOR* pA = new NOR(pGInfo, AND2_FANOUT, true, "NOR");
+		pManager->AddComponent(pA);
+	}
+}

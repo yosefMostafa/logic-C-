@@ -69,6 +69,7 @@
     <ClInclude Include="Actions\AddNANDgate.h" />
     <ClInclude Include="Actions\AddNORgate.h" />
     <ClInclude Include="Actions\AddNOT.h" />
+    <ClInclude Include="Actions\ADDORgate2.h" />
     <ClInclude Include="Actions\Addswitch.h" />
     <ClInclude Include="Actions\AddXNORgate.h" />
     <ClInclude Include="Actions\AddXORgate.h" />
@@ -111,7 +112,6 @@
     <ClInclude Include="Components\XNOR.h" />
     <ClInclude Include="Components\XOR.h" />
     <ClInclude Include="Defs.H" />
-    <ClInclude Include="ADDORgate2.h" />
     <ClInclude Include="UI\UI.h" />
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +121,7 @@
     <ClCompile Include="Actions\AddNANDgate.cpp" />
     <ClCompile Include="Actions\AddNORgate.cpp" />
     <ClCompile Include="Actions\AddNOT.cpp" />
+    <ClCompile Include="Actions\ADDORgate2.cpp" />
     <ClCompile Include="Actions\Addswitch.cpp" />
     <ClCompile Include="Actions\AddXNORgate .cpp" />
     <ClCompile Include="Actions\AddXORgate.cpp" />
@@ -179,7 +180,6 @@
     <ClCompile Include="Components\XNOR.cpp" />
     <ClCompile Include="Components\XOR.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ADDORgate2.cpp" />
     <ClCompile Include="UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
