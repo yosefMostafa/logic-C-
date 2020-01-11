@@ -27,10 +27,13 @@ public:
 	virtual void settrandfa(bool s);
 	virtual bool gettrandfa();
 	virtual void setlabel(string s);
+	OutputPin* getout() { return &m_OutputPin;};
+	InputPin* getin(int x) { return &m_InputPins[x];};
 	virtual void setGInfo(GraphicsInfo* r_GfxInfo);
 	virtual void getlabel(string& s);
 	virtual void getGInfo(GraphicsInfo* r_GfxInfo);
 	virtual int copy() { return NULL; };
+	int checker(GraphicsInfo* r_GfxInfo);
 };
 
 #endif

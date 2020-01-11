@@ -11,6 +11,25 @@ AND2::AND2(GraphicsInfo *r_pGfxInfo, int r_FanOut,bool tf,string s):Gate(r_pGfxI
 
 void AND2::Operate()
 {
+	if (m_InputPins[0].getStatus() == HIGH && m_InputPins[1].getStatus() == HIGH) {
+		m_OutputPin.setStatus(HIGH);
+		settrandfa(false);
+	}
+	else {
+		m_OutputPin.setStatus(LOW);
+		settrandfa(true);
+	}
+	/*int in1=0,in2=0;
+	in1=GetInputPinStatus(1);
+	in2=GetInputPinStatus(2);
+	if (in1*in2==1) {
+		m_OutputPin.setStatus(HIGH);
+		settrandfa(false);
+	}
+	else {
+		settrandfa(true);
+		m_OutputPin.setStatus(LOW);
+	}*/
 	//caclulate the output status as the ANDing of the two input pins
 
 	//Add you code here

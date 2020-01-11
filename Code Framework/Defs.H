@@ -4,6 +4,14 @@
 //This header file contains some defenitions to be used all over the application
 
 //All possible actions
+enum pin {
+	ncon,
+	in1,
+	in2,
+	out,
+	led,
+	on
+};
 enum gate {
 	AND,
 	OR,

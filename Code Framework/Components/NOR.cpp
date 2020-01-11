@@ -11,6 +11,14 @@ NOR::NOR(GraphicsInfo* r_pGfxInfo, int r_FanOut, bool tf,string s) :Gate(r_pGfxI
 
 void NOR::Operate()
 {
+	if (m_InputPins[0].getStatus()==LOW && m_InputPins[1].getStatus()==LOW) {
+		m_OutputPin.setStatus(HIGH);
+		settrandfa(false);
+	}
+	else {
+		m_OutputPin.setStatus(LOW);
+		settrandfa(true);
+	}
 	//caclulate the output status as the ANDing of the two input pins
 
 	//Add you code here

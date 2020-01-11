@@ -51,3 +51,18 @@ void Led::save(ofstream& data) {
 int Led::copy() {
 	return LED;
 }
+int Led::checker(GraphicsInfo* r_GfxInfo) {
+	if (selected(r_GfxInfo->PointsList[0].x, r_GfxInfo->PointsList[0].y)) {
+		if (r_GfxInfo->PointsList[0].x >= (m_pGfxInfo->PointsList[0].x + 25)) {
+			r_GfxInfo->PointsList[0].x = m_pGfxInfo->PointsList[1].x-20;
+			r_GfxInfo->PointsList[0].y = m_pGfxInfo->PointsList[1].y;
+			return led;
+		}
+		else {
+			r_GfxInfo->PointsList[0].x = m_pGfxInfo->PointsList[0].x+20;
+			r_GfxInfo->PointsList[0].y = m_pGfxInfo->PointsList[1].y;
+			return led;
+		}
+	}
+	return ncon;
+}

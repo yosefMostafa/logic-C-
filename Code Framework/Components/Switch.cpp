@@ -11,7 +11,12 @@ Switch::Switch(GraphicsInfo* r_pGfxInfo, int r_FanOut, bool tf, string s) :Gate(
 
 void Switch::Operate()
 {
-	//caclulate the output status as the ANDing of the two input pins
+	if (trandfa) {
+		m_OutputPin.setStatus(HIGH);
+	}
+	else {
+		m_OutputPin.setStatus(LOW);
+	}//caclulate the output status as the ANDing of the two input pins
 
 	//Add you code here
 }
@@ -50,4 +55,28 @@ void Switch::save(ofstream& data) {
 }
 int Switch::copy() {
 	return Switch1;
+}
+int Switch::checker(GraphicsInfo* r_GfxInfo) {
+	if (selected(r_GfxInfo->PointsList[0].x, r_GfxInfo->PointsList[0].y)) {
+		if (r_GfxInfo->PointsList[0].x >= (m_pGfxInfo->PointsList[0].x + 25)) {
+			r_GfxInfo->PointsList[0].x = m_pGfxInfo->PointsList[1].x;
+			r_GfxInfo->PointsList[0].y = m_pGfxInfo->PointsList[0].y + 25;
+			return on;
+		}
+		else {
+			r_GfxInfo->PointsList[0].x = m_pGfxInfo->PointsList[1].x;
+			r_GfxInfo->PointsList[0].y = m_pGfxInfo->PointsList[0].y + 25;
+			return on;
+		}
+	}
+	return ncon;
+}
+void Switch::settrandfa(bool s) {
+	if (s) {
+		m_OutputPin.setStatus(HIGH);
+	}
+	else {
+		m_OutputPin.setStatus(LOW);
+	}
+	trandfa = s;
 }

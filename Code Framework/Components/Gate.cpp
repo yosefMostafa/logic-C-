@@ -47,3 +47,23 @@ void Gate::getlabel(string& s) {
 void Gate::getGInfo(GraphicsInfo* r_GfxInfo) {
 	r_GfxInfo = m_pGfxInfo;
 }
+int Gate::checker(GraphicsInfo* r_GfxInfo) {
+	if (selected(r_GfxInfo->PointsList[0].x, r_GfxInfo->PointsList[0].y)) {
+		if (r_GfxInfo->PointsList[0].x >=(m_pGfxInfo->PointsList[0].x+25)) {
+			r_GfxInfo->PointsList[0].x = m_pGfxInfo->PointsList[1].x;
+			r_GfxInfo->PointsList[0].y = m_pGfxInfo->PointsList[0].y+25;
+			return out;
+		}
+		else if(r_GfxInfo->PointsList[0].y<= (m_pGfxInfo->PointsList[0].y+25)){
+			r_GfxInfo->PointsList[0].x = m_pGfxInfo->PointsList[0].x;
+			r_GfxInfo->PointsList[0].y = m_pGfxInfo->PointsList[0].y + 12;
+			return in1;
+		}
+		else {
+			r_GfxInfo->PointsList[0].x = m_pGfxInfo->PointsList[0].x;
+			r_GfxInfo->PointsList[0].y = m_pGfxInfo->PointsList[0].y + 38;
+			return in2;
+		}
+	}
+	return ncon;
+}

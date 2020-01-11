@@ -36,6 +36,7 @@ class UI
 	{
 		IIM_TRUTHTABLE,
 		ITM_DM,
+		ITM_STM,
 		EXIT1,
 		ITM_STN_CNT
 	};

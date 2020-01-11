@@ -23,11 +23,14 @@ private:
 	Component* CompList[MaxCompCount];
 	GraphicsInfo* rGInfo[MaxCompCount];
 	ActionType RActtype[MaxCompCount];
+	int arrofswitches[MaxCompCount], arrofleds[MaxCompCount]
+		, arroflines[MaxCompCount],Snumber, Lenumber, Linumber;
 	string label,cLabel;
 public:	
 	ApplicationManager(); //constructor
 	//Reads the required action from the user and returns the corresponding action type
 	ActionType GetUserAction();
+	
 	
 	
 	//Creates an action and executes it
@@ -44,6 +47,12 @@ public:
 	void paste();
 	void undo();
 	void redo();	
+	Component* CPoint(GraphicsInfo* rGInfo,int &pin);
+	void search();
+	void operate();
+	void nofswitches(int arr[], int& size);
+	void nofleds(int arr[], int& size);
+	void noflines(int arr[],int &size);
 	void UpdateInterface();	//Redraws all the drawing window
 
 	//Gets a pointer to UI Object

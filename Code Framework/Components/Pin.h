@@ -10,7 +10,7 @@ protected:
 public:
 	Pin();
 	void setStatus(STATUS r_Status);
-	STATUS getStatus();
+	int getStatus();
 };
 
 #endif

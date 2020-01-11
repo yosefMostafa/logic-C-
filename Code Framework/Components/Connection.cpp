@@ -1,11 +1,11 @@
 #include "Connection.h"
 
-//Connection::Connection(GraphicsInfo *r_GfxInfo, OutputPin *pSrcPin,InputPin *pDstPin):Component(r_GfxInfo)	
-//{
-	//*m_pGfxInfo = *r_GfxInfo;
-	//SrcPin = pSrcPin;
-	//DstPin = pDstPin;
-//}
+Connection::Connection(GraphicsInfo *r_GfxInfo, OutputPin *pSrcPin,InputPin *pDstPin, bool trfa, string s):Component(r_GfxInfo)
+{
+	m_pGfxInfo = r_GfxInfo;
+	SrcPin = pSrcPin;
+	DstPin = pDstPin;
+}
 Connection::Connection(GraphicsInfo* r_GfxInfo, bool trfa,string s) :Component(r_GfxInfo) {
 	trandfa = trfa; label=s;
 }

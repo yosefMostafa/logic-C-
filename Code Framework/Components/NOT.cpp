@@ -51,3 +51,18 @@ void NOT::save(ofstream& data) {
 int NOT::copy() {
 	return NOT1;
 }
+int NOT::checker(GraphicsInfo* r_GfxInfo) {
+	if (selected(r_GfxInfo->PointsList[0].x, r_GfxInfo->PointsList[0].y)) {
+		if (r_GfxInfo->PointsList[0].x >= (m_pGfxInfo->PointsList[0].x + 25)) {
+			r_GfxInfo->PointsList[0].x = m_pGfxInfo->PointsList[1].x;
+			r_GfxInfo->PointsList[0].y = m_pGfxInfo->PointsList[0].y + 25;
+			return out;
+		}
+		else {
+			r_GfxInfo->PointsList[0].x = m_pGfxInfo->PointsList[0].x;
+			r_GfxInfo->PointsList[0].y = m_pGfxInfo->PointsList[0].y + 25;
+			return in1;
+		}
+	}
+	return ncon;
+}

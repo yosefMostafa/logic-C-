@@ -118,7 +118,7 @@ ActionType UI::GetUserAction()
 			case ITM_XOR: return ADD_XOR_GATE_2;
 			case ITM_XNOR: return ADD_XNOR_GATE_2;
 			case ITM_SM: CreateSimulationToolBar();
-				break;
+				return SIM_MODE;
 			case ITM_NOR2: return ADD_NOR_GATE_2;
 			case ITM_OR2: return ADD_OR_GATE_2;
 			case ITM_DELETE: return DEL;
@@ -166,6 +166,7 @@ ActionType UI::GetUserAction()
 			case IIM_TRUTHTABLE: return TRUTH_TABLE;
 			case ITM_DM:CreateDesignToolBar();
 				return DSN_TOOL;
+			case ITM_STM:return SIM_MODE;
 			case EXIT1:return EXIT;
 			default: return DSN_TOOL;	//A click on empty place in desgin toolbar
 			}
@@ -319,6 +320,7 @@ void UI::CreateSimulationToolBar()
 	string STbarItemImages[ITM_STN_CNT];
 	STbarItemImages[IIM_TRUTHTABLE] = "images\\Menu\\TTL.jpg";
 	STbarItemImages[ITM_DM] = "images\\Menu\\Load.jpg";
+	STbarItemImages[ITM_STM] = "images\\Menu\\SM.jpg";
 	STbarItemImages[EXIT1] = "images\\Menu\\Menu_Exit.jpg";
 	for (int i = 0; i < ITM_STN_CNT; i++) {
 		pWind->DrawImage(STbarItemImages[i], i * ToolItemWidth, 0, ToolItemWidth, ToolBarHeight);
@@ -327,8 +329,8 @@ void UI::CreateSimulationToolBar()
 	//Draw a line under the toolbar
 	pWind->SetPen(BLACK, 20);
 	pWind->SetFont(15, 5, MODERN);
-	string gatelabel[3] = { "TRuth Table","Design mode" ,"Exit program"};
-	for (int i = 0; i < 3; i++) {
+	string gatelabel[4] = { "TRuth Table","Design mode","Stimulate","Exit program"};
+	for (int i = 0; i < 4; i++) {
 			pWind->DrawString(i * ToolItemWidth, 80, gatelabel[i]);
 	}
 	//TODO: Write code to draw the simualtion toolbar (similar to that of design toolbar drawing)

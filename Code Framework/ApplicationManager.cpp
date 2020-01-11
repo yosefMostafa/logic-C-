@@ -25,6 +25,9 @@ ApplicationManager::ApplicationManager()
 	for (int i = 0; i < MaxCompCount; i++) {
 		CompList[i] = NULL;
 		rGInfo[i] = NULL;
+		arrofswitches[i] = NULL;
+		arrofleds[i] = NULL;
+		arroflines[i] = NULL;
 		RActtype[i]= DSN_TOOL;
 	}
 	//Creates the UI Object & Initialize the UI
@@ -134,6 +137,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case REDO:
 			redo();
+			break;
+		case SIM_MODE:
+			operate();
 			break;
 		case EXIT:
 			break;
@@ -595,3 +601,62 @@ void ApplicationManager::redo() {
 		pAct = NULL;
 	}
 }
+Component* ApplicationManager::CPoint(GraphicsInfo* rGInfo,int &pin) {
+	for (int i = 0; i < CompCount; i++) {
+		if (CompList[i]->selected(rGInfo->PointsList[0].x, rGInfo->PointsList[0].y))
+		{
+			pin = CompList[i]->checker(rGInfo);
+			return CompList[i];
+		}
+	}
+	return NULL;
+}
+void ApplicationManager::search() {
+	nofswitches(arrofswitches,Snumber);
+	noflines(arroflines, Linumber);
+	nofleds(arrofleds, Lenumber);
+	
+
+	operate();
+}
+void ApplicationManager::nofswitches(int arr[], int& s) {
+	int switchpin,c=0;
+	for (int i = 0; i < CompCount; i++) {
+		switchpin=CompList[i]->copy();
+		if (switchpin==8) {
+			arr[c] = i;
+			c++;
+			s = c;
+		}
+	}
+}
+void ApplicationManager::nofleds(int arr[], int& s){
+	int ledpin, c = 0;
+	for (int i = 0; i < CompCount; i++) {
+		ledpin = CompList[i]->copy();
+		if (ledpin == 7) {
+			arr[c] = i;
+			c++;
+			s = c;
+		}
+	}
+}
+void ApplicationManager::noflines(int arr[], int& s){
+	int concpin, c = 0;
+	for (int i = 0; i < CompCount; i++) {
+		concpin = CompList[i]->copy();
+		if (concpin == 4) {
+			arr[c] = i;
+			c++;
+			s = c;
+		}
+	}
+}
+void ApplicationManager::operate() {
+	for (int j = 0; j< CompCount; j++) {
+		for (int i = 0; i < CompCount; i++) {
+			CompList[i]->Operate();
+		}
+	}
+}
+
