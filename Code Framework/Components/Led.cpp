@@ -11,6 +11,14 @@ Led::Led(GraphicsInfo* r_pGfxInfo, int r_FanOut, bool tf, string s) :Gate(r_pGfx
 
 void Led::Operate()
 {
+	if (m_InputPins[0].getStatus()==HIGH) {
+		m_OutputPin.setStatus(HIGH);
+		settrandfa(false);
+	}
+	else {
+		m_OutputPin.setStatus(LOW);
+		settrandfa(true);
+	}
 	//caclulate the output status as the ANDing of the two input pins
 
 	//Add you code here
@@ -56,12 +64,12 @@ int Led::checker(GraphicsInfo* r_GfxInfo) {
 		if (r_GfxInfo->PointsList[0].x >= (m_pGfxInfo->PointsList[0].x + 25)) {
 			r_GfxInfo->PointsList[0].x = m_pGfxInfo->PointsList[1].x-20;
 			r_GfxInfo->PointsList[0].y = m_pGfxInfo->PointsList[1].y;
-			return led;
+			return out;
 		}
 		else {
 			r_GfxInfo->PointsList[0].x = m_pGfxInfo->PointsList[0].x+20;
 			r_GfxInfo->PointsList[0].y = m_pGfxInfo->PointsList[1].y;
-			return led;
+			return in1;
 		}
 	}
 	return ncon;

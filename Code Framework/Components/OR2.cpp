@@ -9,6 +9,14 @@ OR2::OR2(GraphicsInfo* r_pGfxInfo, int r_FanOut, bool tf,string s) :Gate(r_pGfxI
 
 void OR2::Operate()
 {
+	if (m_InputPins[0].getStatus() == HIGH || m_InputPins[1].getStatus() == HIGH) {
+		m_OutputPin.setStatus(HIGH);
+		settrandfa(false);
+	}
+	else {
+		m_OutputPin.setStatus(LOW);
+		settrandfa(true);
+	}
 	//caclulate the output status as the ANDing of the two input pins
 
 	//Add you code here

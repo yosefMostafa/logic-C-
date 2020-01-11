@@ -11,6 +11,14 @@ NOT::NOT(GraphicsInfo* r_pGfxInfo, int r_FanOut, bool tf, string s) :Gate(r_pGfx
 
 void NOT::Operate()
 {
+	if (m_InputPins[0].getStatus() == HIGH ) {
+		m_OutputPin.setStatus(LOW);
+		settrandfa(true);
+	}
+	else {
+		m_OutputPin.setStatus(HIGH);
+		settrandfa(false);
+	}
 	//caclulate the output status as the ANDing of the two input pins
 
 	//Add you code here
